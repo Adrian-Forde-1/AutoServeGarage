@@ -1,0 +1,52 @@
+h1 {
+  text-align: center;
+}
+
+// .container {
+//   max-width: 1200px;
+//   margin: auto;
+//   overflow: auto;
+// }
+
+.store-header {
+  margin-top: 30px;
+  font-size: 32px;
+  font-weight: 400;
+  letter-spacing: 5px;
+}
+
+.gallery {
+  margin-top: 7vh;
+  margin-bottom: 7vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 20px;
+
+  &__img {
+    width: 300px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+
+    &:hover {
+      border-color: #3f4043;
+    }
+    img {
+      width: 100%;
+      height: 300px;
+    }
+  }
+
+  //   margin: 5px;
+  //   border: 1px solid #ccc;
+  //   float: left;
+  //   width: 370px;
+}
+.desc {
+  padding: 15px;
+  text-align: center;
+}

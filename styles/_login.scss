@@ -1,0 +1,104 @@
+$color-blue: #2e294e;
+$color-gold: #ffc627;
+
+.login {
+  &__wrapper {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url("../assets/tools-img.jpg");
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__body {
+    min-width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background: $color-blue;
+    border-radius: 10px;
+    padding: 20px 20px;
+    h3 {
+      font-size: 2.5em;
+      color: #fff;
+      margin-bottom: 30px;
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      label {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        margin-bottom: 20px;
+
+        span {
+          font-size: 1.6em;
+          color: #fff;
+          margin-bottom: 5px;
+        }
+
+        input {
+          width: 100%;
+          padding: 5px;
+          font-size: 1.6em;
+          background: transparent;
+          border: none;
+          color: #fff;
+          border-bottom: 2px solid $color-gold;
+
+          // &:-webkit-autofill,
+          // &:-webkit-autofill:hover,
+          // &:-webkit-autofill:focus,
+          // &:-webkit-autofill:active {
+          //   -webkit-box-shadow: 0 0 0 30px $color-blue inset !important;
+          // }
+        }
+
+        select {
+          width: 100%;
+          padding: 5px;
+          border-radius: 5px;
+          font-size: 1.6em;
+          background: transparent;
+          border: none;
+          color: #fff;
+          border-bottom: 2px solid $color-gold;
+          cursor: pointer;
+
+          option {
+            font-size: 1em;
+            color: #000000;
+          }
+        }
+      }
+
+      button {
+        width: 150px;
+        height: 50px;
+        color: #fff;
+        background: transparent;
+        border: 2px solid $color-gold;
+        transition: all 300ms ease-in-out;
+        cursor: pointer;
+        font-size: 1.6em;
+        margin-top: 20px;
+
+        &:hover {
+          background: $color-gold;
+          color: $color-blue;
+        }
+      }
+    }
+  }
+}

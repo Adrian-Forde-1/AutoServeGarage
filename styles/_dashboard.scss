@@ -1,0 +1,205 @@
+$color-blue: #2e294e;
+$color-gold: #ffc627;
+
+.dashboard {
+  &__wrapper {
+    width: 100%;
+    min-height: 100vh;
+    height: 100vh;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url("../assets/tools-img.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  &__sidenav {
+    height: 100%;
+    width: 5%;
+    background: $color-blue;
+    left: 0;
+    top: 0;
+    position: fixed;
+    transition: all 300ms ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    z-index: 1000;
+
+    div {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 10%;
+      cursor: pointer;
+      transition: all 300ms ease-in-out;
+
+      a {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+      }
+
+      &#settings {
+        margin-top: auto;
+      }
+
+      svg {
+        font-size: 2em;
+        color: #fff;
+        transition: all 300ms ease-in-out;
+      }
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.7);
+
+        svg {
+          color: $color-gold;
+          position: relative;
+        }
+
+        span {
+          width: 2em;
+        }
+      }
+
+      span {
+        display: block;
+        width: 0;
+        transition: all 200ms linear;
+        font-size: 1.6em;
+        color: #fff;
+        margin-left: 10px;
+        overflow: hidden;
+        position: relative;
+      }
+    }
+
+    &:hover {
+      width: 10%;
+      box-shadow: 0px 2px 10px 2px black;
+    }
+  }
+
+  &__content {
+    // padding: 50px 0px;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+    padding: 0px 20px 0px calc(5% + 20px);
+    // background: #110c37;
+    // background: #fff;
+    // background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    //   url("../assets/tools-img.jpg");
+    position: relative;
+    overflow-y: auto;
+  }
+
+  &__current-repair {
+    width: 100%;
+    padding: 50px 10% 0px 10%;
+    span {
+      color: #fff;
+      font-size: 2em;
+      font-weight: 400;
+    }
+
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      span {
+        color: #fff;
+        margin-left: 10px;
+        font-size: 1.2em;
+      }
+    }
+    input[type="range"] {
+      flex: 1 1 auto;
+      height: 3px;
+      background: $color-blue;
+      appearance: none;
+      overflow: hidden;
+
+      &::-webkit-slider-thumb {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        appearance: none;
+        background: $color-gold;
+        box-shadow: -500px 0px 0 500px $color-gold;
+      }
+    }
+  }
+
+  &__card-container {
+    width: 100%;
+    padding: 0 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    align-content: flex-start;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    margin-top: 50px;
+  }
+
+  &__card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+    background: $color-blue;
+    cursor: pointer;
+    transition: all 300ms ease-in-out;
+    a {
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      .dashboard__card-icon {
+        svg {
+          font-size: 5em;
+          color: #fff;
+        }
+      }
+      span {
+        color: #fff;
+        margin-top: 15px;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 300ms ease-in-out;
+        font-size: 1.2em;
+      }
+    }
+
+    &:hover {
+      background: #110c37;
+
+      a {
+        .dashboard__card-icon {
+          svg {
+            color: $color-gold;
+          }
+        }
+
+        span {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,374 @@
+/* Container used to center things on the screen and has
+ some padding on the left and right */
+.container {
+  width: 100%;
+  height: auto;
+  padding: 0 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+/* Navbar Start */
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 7vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0% 10%;
+  background: #2e294e;
+  z-index: 1000;
+}
+
+.nav-logo {
+  color: #fff;
+  font-size: 3em;
+  cursor: pointer;
+}
+
+.nav-list {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.nav-list .navlist-item {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  color: #fff;
+  list-style: none;
+  padding: 0px 10px;
+  font-size: 1.4em;
+  -webkit-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+  cursor: pointer;
+}
+
+.nav-list .navlist-item button {
+  border: none;
+  background: none;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.nav-list .navlist-item a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.nav-list .navlist-item a,
+.nav-list .navlist-item button {
+  color: #fff;
+  font-size: 0.8em;
+}
+
+.nav-list .navlist-item:nth-last-of-type(1) {
+  margin-right: 0px;
+}
+
+.nav-list .navlist-item:hover {
+  background: rgba(0, 0, 0, 0.4);
+}
+/* Navbar End */
+
+/* Css for the img and text section I had on the homepage where the
+ image was on one side and the text was on another */
+.img-text {
+  width: 100%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin: 50px 0px;
+}
+
+.img-text__img-container {
+  height: 80vh;
+  width: 50%;
+}
+
+.img-text__img-container img {
+  -o-object-fit: cover;
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.img-text__text-container {
+  height: 80vh;
+  width: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 40px;
+  text-align: center;
+}
+
+.img-text__text-container h3 {
+  font-size: 5em;
+  font-family: "Sacramento", cursive;
+  color: #ffc627;
+}
+
+.img-text__text-container p {
+  font-size: 1.4em;
+}
+
+/* Section Divider Start */
+/* Css for the section under the header */
+.section-separator {
+  width: 100%;
+  height: 40vh;
+  background: -webkit-gradient(
+      linear,
+      left top,
+      left bottom,
+      from(rgba(0, 0, 0, 0.7)),
+      to(rgba(0, 0, 0, 0.7))
+    ),
+    url("../assets/wrenches.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("../assets/wrenches.jpg");
+  background-attachment: fixed;
+  padding: 0 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.section-separator div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.section-separator div svg {
+  font-size: 8em;
+  color: #fff;
+  margin-bottom: 15px;
+}
+
+.section-separator div svg:hover {
+  color: #ffc627;
+}
+
+.section-separator div span {
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #fff;
+}
+
+.section-divider {
+  width: 100%;
+  height: 23vh;
+  background: #2e294e;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 10%;
+  text-align: center;
+}
+
+.section-divider h5 {
+  font-size: 3em;
+  color: #ffc627;
+  font-family: "Sacramento", cursive;
+}
+
+.section-divider p {
+  max-width: 400px;
+  color: #fff;
+  font-size: 1.2em;
+}
+/* Section Divider End */
+
+/* Hompage CSS Start*/
+/* This is css for the header where the picture of the tools is located */
+.header {
+  min-height: 100vh;
+  width: 100%;
+  position: relative;
+  background: url("../assets/tools-img.jpg");
+  background-position: left;
+}
+
+.header__img {
+  height: 100%;
+  width: 100%;
+}
+
+.header__content-container {
+  width: 50%;
+  height: 100vh;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.header__content-container:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.header__content-container:hover .header__text h1 {
+  color: #ffc627;
+}
+
+.header__cta-container {
+  margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.header__cta-container a {
+  text-decoration: none;
+  color: #fff;
+  display: block;
+  width: 100px;
+  height: 40px;
+  border-radius: 50px;
+  border: 2px solid #2e294e;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  margin-right: 10px;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.header__cta-container a:nth-last-of-type(1) {
+  margin-right: 0px;
+}
+
+.header__cta-container a:hover {
+  background: #2e294e;
+}
+
+.header__text {
+  text-align: center;
+}
+
+.header__text h1 {
+  width: auto;
+  font-size: 60px;
+  font-weight: 600;
+  font-family: "Sacramento", cursive;
+  -webkit-transition: all 300ms ease-in-out;
+  transition: all 300ms ease-in-out;
+}
+
+.header__text p {
+  font-size: 14px;
+  width: 400px;
+}
+/* Hompage CSS End*/
