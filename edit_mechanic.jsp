@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mechanic</title>
+    <title>Edit Mechanic</title>
 
     <link rel="stylesheet" href="./styles/filter_styles.css" />
     <link rel="stylesheet" href="./styles/styles.css" />
@@ -153,7 +153,6 @@
       </div>
     </nav>
     <div class="dashboard__content">
-      <div class="profile__wrapper">
         <%
         String dbURL = "jdbc:mysql://localhost:3306/autoserve";
         String username = "root";
@@ -177,38 +176,157 @@
             ResultSet garageResultSet = garageStatement.executeQuery("SELECT name FROM garage WHERE garage_id = '" + garageID + "'");
 
               if(garageResultSet.next()) {  %>
-                <span class="profile__name"><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %> - Mechanic</span>
-                <div class="profile__data-field">
-                  <span>ID: </span> <span><%= resultSet.getInt("mechanic_id") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Address: </span> <span><%= resultSet.getString("address") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Contact: </span> <span><%= resultSet.getString("contact") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Date of birth: </span> <span><%= resultSet.getString("dob") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Sex: </span> <span><%= resultSet.getString("sex") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Garage: </span> <span><%= garageResultSet.getString("name") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <a href='./edit_mechanic.jsp?ID=<%= resultSet.getInt("mechanic_id")%>'>Edit Mechanic</a>
-                </div>
-            <%  }
-            }
+                <div class="form__wrapper">
+                    <div class="form__body">
+                        <h3>Edit Mechanic</h3>
+                        <form action="./jsp/edit_mechanicJSP.jsp" method="POST">
+                            <input type="text" hidden name="mechanic-id" name="mechanic-id" value='<%= resultSet.getInt("mechanic_id") %>'>
+                          <label for="">
+                            <span>First Name *</span>
+                            <input
+                              type="text"
+                              name="mechanic-f-name"
+                              id="mechanic-f-name"
+                              value='<%= resultSet.getString("fname") %>'
+                              required
+                            />
+                          </label>
+                          <label for="">
+                            <span>Last Name *</span>
+                            <input
+                              type="text"
+                              name="mechanic-l-name"
+                              id="mechanic-l-name"
+                              value='<%= resultSet.getString("lname") %>'
+                              required
+                            />
+                          </label>
+                          <label for="">
+                            <span>Email *</span>
+                            <input
+                              type="email"
+                              name="mechanic-email"
+                              id="mechanic-email"
+                              required
+                              value='<%= resultSet.getString("email") %>'
+                              autocomplete="none"
+                            />
+                          </label>
+                          <label for="">
+                            <span>Address</span>
+                            <input
+                              type="text"
+                              name="mechanic-address"
+                              id="mechanic-address"
+                              value='<%= resultSet.getString("address") %>'
+                              required
+                              autocomplete="none"
+                            />
+                          </label>
+                          <label for="">
+                            <span>Contact *</span>
+                            <input
+                              type="text"
+                              name="mechanic-contact"
+                              id="mechanic-contact"
+                              value='<%= resultSet.getString("contact") %>'
+                              required
+                              autocomplete="none"
+                            />
+                          </label>
+                          <label for="">
+                            <span>Date of Birth *</span>
+                            <input type="date" name="mechanic-dob" id="mechanic-dob" required value='<%= resultSet.getString("dob") %>'/>
+                          </label>
+                          <label for="">
+                            <span>Sex *</span>
+                            <select name="mechanic-sex" id="mechanic-sex">
+                                <option value='<%= resultSet.getString("sex") %>' selected hidden><%= resultSet.getString("sex") %></option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                          </label>
+                          <%
+            
+                              try {
+                          
+                                Class.forName("com.mysql.jdbc.Driver");
+            
+                                Statement specStatement = connection.createStatement();
+                                ResultSet specResultSet = specStatement.executeQuery("SELECT * FROM Specialization");
+                                
+                                Statement mechSpecStatement = connection.createStatement();
+                                ResultSet mechSpecResultSet = mechSpecStatement.executeQuery("SELECT * FROM mechanic_specialization WHERE mechanic_id = '" + mechanicID + "'");
+                                
+                                if(mechSpecResultSet.next()) {
+                                    int specID = mechSpecResultSet.getInt("specialization_id");
+                                    out.println(specID);
+                                    Statement individualSpecStatement = connection.createStatement();
+                                    ResultSet individualSpecResultSet = individualSpecStatement.executeQuery("SELECT * FROM Specialization WHERE specialization_id = '" + specID + "'");
+
+                                    if(individualSpecResultSet.next()) { %>
+                                        <label for="">
+                                            <span>Specialization *</span>
+                                            <select name="mechanic-specialization" id="mechanic-specialization" >
+                                                <option value='<%= individualSpecResultSet.getInt("specialization_id") %>' selected hidden><%= individualSpecResultSet.getString("specialization") %></option>
+                                              <% while(specResultSet.next()) { %>
+                                                <option value='<%= specResultSet.getInt("specialization_id") %>'><%= specResultSet.getString("specialization") %></option>
+                                              <% } %>
+                                            </select>
+                                        </label>
+                                    <%
+                                    } else {
+                                        out.println("Something went wrong in second query");
+                                    }
+                                } else {
+                                    out.println("Something went wrong in first query");
+                                }
+                               
+                                
+                                
+                              } catch(Exception ex) {
+                                out.println(ex);
+                              }
+            
+                          %>
+            
+                          <%
+                              try {
+                              
+                                Class.forName("com.mysql.jdbc.Driver");
+                              
+                                Statement allGarageStatement = connection.createStatement();
+                                ResultSet allGarageResultSet = allGarageStatement.executeQuery("SELECT * FROM Garage");
+                          %>
+                          <label for="">
+                            <span>Garage *</span>
+                            <select name="mechanic-garage-id" id="mechanic-garage-id">
+                              <% while(allGarageResultSet.next()) { %>
+                                <option value='<%= allGarageResultSet.getInt("garage_id") %>'><%= allGarageResultSet.getString("name") %></option>
+                              <% } %>
+                            </select>
+                          </label>
+                        
+                          <%
+            
+                              } catch(Exception ex) {
+                                out.println(ex);
+                              }
+                            
+                          %>
+                             
+                         <%  }
+                                 }
+                             
+                               } catch(Exception ex) {
+                                  out.println(ex);
+                                 }
     
-          } catch(Exception ex) {
-            out.println(ex);
-          }
-    
-      %>
-      </div>
-     
+                              %>
+                              <button>Submit</button>
+                        </form>
+                    </div>
+                </div>
     </div>
   </div>
   
