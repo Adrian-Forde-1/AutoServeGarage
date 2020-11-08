@@ -153,7 +153,7 @@
         </nav>
         <div class="dashboard__content">
           <h2 class="overview-header">
-            Overview of current long-term service clients
+            Mechanics
           </h2>
   
           <input
