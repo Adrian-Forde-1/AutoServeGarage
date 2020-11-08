@@ -15,7 +15,7 @@
         String mechanicContact = request.getParameter("mechanic-contact");
         String mechanicDOB = request.getParameter("mechanic-dob");
         String mechanicSex = request.getParameter("mechanic-sex");
-        String mechanicSpecialization = request.getParameter("mechanic-specialization");
+        int mechanicSpecialization = Integer.parseInt(request.getParameter("mechanic-specialization"));
         int mechanicGarageID = Integer.parseInt(request.getParameter("mechanic-garage-id"));
         
        
@@ -44,14 +44,35 @@
 
           updateQuery = pstatement.executeUpdate();
 
-          if(updateQuery != 0) { %>
-            <br>
-            <table>
-              <tr>
-                <th>Data inserted into database</th>
-              </tr>
-            </table>
-            <%
+          if(updateQuery != 0) {
+            String getMechanicQuery = "SELECT mechanic_id FROM Mechanic ORDER BY mechanic_id DESC LIMIT 1";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(getMechanicQuery);
+
+            if(resultSet.next()) {
+              int mechanicID = resultSet.getInt("mechanic_id");
+
+              PreparedStatement specStatement = null;
+              String queryAddSpec = "INSERT INTO mechanic_specialization (mechanic_id, specialization_id) VALUES(?, ?)";
+
+              specStatement = connection.prepareStatement(queryAddSpec);
+              specStatement.setInt(1, mechanicID);
+              specStatement.setInt(2, mechanicSpecialization);
+
+              int mechSpecUpdateQuery = specStatement.executeUpdate();
+
+              if(mechSpecUpdateQuery != 0) { %>
+                  <h4>Mechanic was saved to the database</h4>
+                <%
+              } else {
+                out.println("Something went wrong saving mechani's specialization to database");
+              }
+              
+            } else {
+              out.println("Something went wrong when added mechanic specialization");
+            }
+
+            
           }
         } catch(Exception ex) {
           out.println(ex);

@@ -210,7 +210,7 @@
               <label for="">
                 <span>Sex *</span>
                 <select name="mechanic-sex" id="mechanic-sex">
-                  <option value="male">Male</option>
+                  <option value="Male">Male</option>
                   <option value="Female">Female</option>
                    <!-- String dbURL = "jdbc:mysql://localhost:3306/Distributed"; -->
                 </select>
