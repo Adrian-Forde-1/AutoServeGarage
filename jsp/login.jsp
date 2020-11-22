@@ -29,7 +29,7 @@
     
           if(resultSet.next()) {
             %> <p>Not Empty</p> <%
-            int roleID = resultSet.getInt("role_id");
+            int roleID = resultSet.getInt("role");
             ResultSet roleSet = roleStatement.executeQuery("SELECT role FROM Role WHERE role_id = '"+ roleID +"'");
 
             if(roleSet.next()) {
