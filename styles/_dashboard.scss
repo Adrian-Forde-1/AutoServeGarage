@@ -11,7 +11,7 @@ $color-gold: #ffc627;
     align-items: flex-start;
     position: relative;
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-      url("../assets/tools-img.jpg");
+      url('../assets/tools-img.jpg');
     background-size: cover;
     background-attachment: fixed;
   }
@@ -99,7 +99,6 @@ $color-gold: #ffc627;
     // background: #fff;
     // background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     //   url("../assets/tools-img.jpg");
-    border: 1px solid red;
     position: relative;
     overflow-y: auto;
   }
@@ -123,7 +122,7 @@ $color-gold: #ffc627;
         font-size: 1.2em;
       }
     }
-    input[type="range"] {
+    input[type='range'] {
       flex: 1 1 auto;
       height: 3px;
       background: $color-blue;

@@ -45,7 +45,7 @@
             </a>
           </div>
           <div>
-            <a href="staff_dashboard.html">
+            <a href="staff_dashboard.jsp">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 aria-hidden="true"
@@ -190,29 +190,23 @@
                   Class.forName("com.mysql.jdbc.Driver");
                   connection = DriverManager.getConnection(dbURL, username, password);
                   
-                  String queryString = "SELECT * FROM Mechanic";
+                  String queryString = "SELECT m.mechanic_id AS mechanic_id, m.fname as fname, m.lname as lname, m.address as address, m.contact as contact, m.sex as sex, g.name as garage FROM Mechanic m JOIN Garage g ON m.garage_id = g.garage_id";
 
                   Statement statement = connection.createStatement();
                   ResultSet resultSet = statement.executeQuery(queryString);
                   
-                 while(resultSet.next()) { 
-                    Statement garageStatement = connection.createStatement();
-                    int garageID = resultSet.getInt("garage_id");
-                    ResultSet garageResultSet = garageStatement.executeQuery("SELECT name FROM garage WHERE garage_id = '" + garageID + "'"); 
-                    
-                    if(garageResultSet.next()) {
-                    %>
-                    <tr>
-                        <td><%= resultSet.getInt("mechanic_id") %></td>
-                        <td>
-                            <a href='./mechanic.jsp?ID=<%= resultSet.getInt("mechanic_id")%>'><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %></a>
-                        </td>
-                        <td><%= resultSet.getString("address") %></td>
-                        <td><%= resultSet.getString("contact") %></td>
-                        <td><%= resultSet.getString("sex") %></td>
-                        <td><%= garageResultSet.getString("name") %></td>
-                    </tr>
-                <%  }
+                 while(resultSet.next()) {%>
+                  <tr>
+                    <td><%= resultSet.getInt("mechanic_id") %></td>
+                    <td>
+                        <a href='./mechanic.jsp?ID=<%= resultSet.getInt("mechanic_id")%>'><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %></a>
+                    </td>
+                    <td><%= resultSet.getString("address") %></td>
+                    <td><%= resultSet.getString("contact") %></td>
+                    <td><%= resultSet.getString("sex") %></td>
+                    <td><%= resultSet.getString("garage") %></td>
+                </tr>
+                <%  
                 }
 
                 } catch(Exception ex) {
