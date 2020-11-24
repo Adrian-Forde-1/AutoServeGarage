@@ -171,7 +171,16 @@
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(queryString);
             
-           if(resultSet.next()) {%>
+           if(resultSet.next()) {
+             
+            String userRole = (String)session.getAttribute("role");
+            int userID = Integer.parseInt((String)session.getAttribute("userID"));
+
+            if(userRole.equals("Customer") && userID != resultSet.getInt("user_id")) {
+              response.sendRedirect("./not_found.html");
+            }
+
+            %>
                <div class="profile__left">
                 <span class="profile__name"><%= resultSet.getString("vehicle_name") %> - Vehicle</span>
                 <div class="profile__data-field">
