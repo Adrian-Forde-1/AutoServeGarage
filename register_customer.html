@@ -41,7 +41,7 @@
           </a>
         </div>
         <div>
-          <a href="staff_dashboard.html">
+          <a href="staff_dashboard.jsp">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
@@ -153,7 +153,7 @@
         <div class="form__wrapper">
           <div class="form__body">
             <h3>Register Customer</h3>
-            <form action="./jsp/register_customer.jsp" method="POST">
+            <form action="./jsp/register_customerJSP.jsp" method="POST">
               <label for="">
                 <span>First Name *</span>
                 <input
@@ -188,7 +188,6 @@
                   type="text"
                   name="customer-address"
                   id="customer-address"
-                  required
                   autocomplete="none"
                 />
               </label>
@@ -208,8 +207,8 @@
               </label>
               <label for="">
                 <span>Sex *</span>
-                <select name="client-sex" id="client-sex">
-                  <option value="male">Male</option>
+                <select name="customer-sex" id="customer-sex">
+                  <option value="Male" selected>Male</option>
                   <option value="Female">Female</option>
                 </select>
               </label>
