@@ -46,7 +46,7 @@
         </a>
       </div>
       <div>
-        <a href="staff_dashboard.html">
+        <a href="staff_dashboard.jsp">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
@@ -174,7 +174,8 @@
                 <div class="form__wrapper">
                     <div class="form__body">
                         <h3>Edit Specialization</h3>
-                        <form action="./jsp/add_speciailzation.jsp">
+                        <form action="./jsp/edit_specializationJSP.jsp">
+                          <input type="text" hidden value='<%= request.getParameter("ID") %>' name="specialization_id">
                             <label for="">
                                 <span>Specialization *</span>
                                 <input type="text" id="specialization" name="specialization" value='<%= resultSet.getString("specialization") %>'' required />

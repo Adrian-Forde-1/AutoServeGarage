@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Mechanics</title>
+    <title>View Specializations</title>
 
     <link rel="stylesheet" href="./styles/filter_styles.css" />
     <link rel="stylesheet" href="./styles/styles.css" />
@@ -169,10 +169,9 @@
           <table id="myTable">
             <thead>
               <tr class="header">
-                <th>ID</th>
-                <th colspan="8">Specialization</th>
-                <th></th>
-                <th></th>
+                <th colspan="1">ID</th>
+                <th colspan="10">Specialization</th>
+                <th colspan="1"></th>
               </tr>
             </thead>
             <tbody>
@@ -196,11 +195,11 @@
                  while(resultSet.next()) { %>
                   
                   <tr>
-                    <td><%= resultSet.getInt("specialization_id") %></td>
-                    <td>
+                    <td colspan="1"><%= resultSet.getInt("specialization_id") %></td>
+                    <td colspan="10">
                         <%= resultSet.getString("specialization") %>
                     </td>
-                    <td>
+                    <td colspan="1">
                       <a href='./edit_specialization.jsp?ID=<%= resultSet.getInt("specialization_id")%>'>Edit</a>
                     </td>
                   </tr>
