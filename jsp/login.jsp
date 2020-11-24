@@ -36,6 +36,7 @@
               session.setAttribute("fname", resultSet.getString("fname"));
               session.setAttribute("lname", resultSet.getString("lname"));
               session.setAttribute("role", roleSet.getString("role"));
+              session.setAttribute("userID", resultSet.getString("user_id"));
               response.sendRedirect("../index.jsp");
             } else {
                 out.println("Something went wrong!");

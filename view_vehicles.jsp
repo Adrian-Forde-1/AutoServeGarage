@@ -198,7 +198,7 @@
                   <tr>
                     <td style="text-align: center;"><%= resultSet.getInt("vehicle_id") %></td>
                     <td style="text-align: center;">
-                        <a href='./vehicle.jsp?ID=<%= resultSet.getInt("vehicle_id")%>'><%= resultSet.getString("vehicle_name") %></a>
+                        <a href='./vehicle.jsp?ID=<%= resultSet.getInt("vehicle_id")%>' class="filter-by"><%= resultSet.getString("vehicle_name") %></a>
                     </td>
                     <td style="text-align: center;"><%= resultSet.getString("manufacturer") %></td>
                     <td style="text-align: center;"><%= resultSet.getString("manufactured_date") %></td>
@@ -216,7 +216,7 @@
             %>
             </tbody>
           </table>
-          <script src="./scripts/filter.js"></script>
+          <script src="./scripts/table_filter.js"></script>
         </div>
       </div>
 </body>

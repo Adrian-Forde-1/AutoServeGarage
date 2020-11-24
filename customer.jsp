@@ -178,6 +178,9 @@
                   <span>ID: </span> <span><%= resultSet.getInt("user_id") %></span>
                 </div>
                 <div class="profile__data-field">
+                  <span>Email: </span> <span><%= resultSet.getString("email") %></span>
+                </div>
+                <div class="profile__data-field">
                   <span>Address: </span> <span><%= resultSet.getString("address") %></span>
                 </div>
                 <div class="profile__data-field">

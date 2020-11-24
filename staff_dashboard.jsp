@@ -16,7 +16,7 @@
     <!-- <link rel="stylesheet" href="./styles/styles.css" /> -->
     <link rel="stylesheet" href="./styles/dashboard.css" />
     <link rel="stylesheet" href="./styles/global.css" />
-    <title>Dashboard | Staff</title>
+    <title>Dashboard</title>
   </head>
   <body>
     <div class="dashboard__wrapper">
