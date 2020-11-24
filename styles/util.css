@@ -1,0 +1,16 @@
+.flow-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.center {
+    justify-content: center;
+}
+
+.container .cropped {
+    padding: 0px 5%;
+}

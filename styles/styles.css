@@ -374,8 +374,6 @@
 .dashboard__card a span {
   color: #fff;
   margin-top: 15px;
-  opacity: 0;
-  visibility: hidden;
   -webkit-transition: all 300ms ease-in-out;
   transition: all 300ms ease-in-out;
   font-size: 1.2em;
@@ -387,11 +385,6 @@
 
 .dashboard__card:hover a .dashboard__card-icon svg {
   color: #ffc627;
-}
-
-.dashboard__card:hover a span {
-  visibility: visible;
-  opacity: 1;
 }
 
 .header {

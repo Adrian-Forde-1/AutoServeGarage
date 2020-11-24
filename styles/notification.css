@@ -1,0 +1,41 @@
+.notification__wrapper {
+    width: 35%;
+    height: 150px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #2e294e;
+}
+
+.notification__info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.notification__info span {
+    text-align: center;
+    font-size: 14px;
+    color: #fff;
+}
+
+.notification__button {
+    padding: 8px 15px;
+    border: 2px solid #fff;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0px;
+    font-size: 14px;
+    background: #2e294e;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: all 200ms ease-in-out;
+}
+
+.notification__button:hover {
+    background: #fff;
+    color: #2e294e;
+}
