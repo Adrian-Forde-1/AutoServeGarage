@@ -176,8 +176,8 @@
                     while(resultSet.next()) {
               %>
               <label for="" class="h-align-label-items">
-                <input type="checkbox" name="calculator-cost" id="calculator-cost" value='<%= resultSet.getInt("cost") %>'>
                 <span><%= resultSet.getString("service") %></span>
+                <input type="checkbox" class="calculator-checkbox" name="calculator-cost" id="calculator-cost" value='<%= resultSet.getInt("cost") %>'>
               </label>
 
               <% }
@@ -193,5 +193,6 @@
         </div>
       </div>
     </div>
+    <script src="./scripts/estimateCalculator.js"></script>
   </body>
 </html>
