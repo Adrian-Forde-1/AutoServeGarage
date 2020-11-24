@@ -4,11 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer</title>
+    <title>Edit Vehicle</title>
 
     <link rel="stylesheet" href="./styles/filter_styles.css" />
     <link rel="stylesheet" href="./styles/styles.css" />
     <link rel="stylesheet" href="./styles/profile.css">
+    
 
     <!-- Montserrat Font -->
     <link
@@ -153,7 +154,6 @@
       </div>
     </nav>
     <div class="dashboard__content">
-      <div class="profile__wrapper">
         <%
         String dbURL = "jdbc:mysql://localhost:3306/autoserve";
         String username = "root";
@@ -164,49 +164,82 @@
             Connection connection = null;
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(dbURL, username, password);
-            int customerID = Integer.parseInt(request.getParameter("ID"));
+            int vehicleID = Integer.parseInt(request.getParameter("ID"));
             
-            String queryString = "SELECT * FROM User WHERE user_id = '" + customerID + "'";
+            String queryString = "SELECT * FROM Vehicle WHERE vehicle_id = '" + vehicleID + "'";
     
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(queryString);
             
-           if(resultSet.next()) {%>
-               <div class="profile__left">
-                <span class="profile__name"><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %> - Customer</span>
-                <div class="profile__data-field">
-                  <span>ID: </span> <span><%= resultSet.getInt("user_id") %></span>
+           if(resultSet.next()) { %>
+                <div class="form__wrapper">
+                    <div class="form__body">
+                        <h3>Edit Vehicle</h3>
+                        <form action="./jsp/edit_vehicleJSP.jsp" method="POST">
+                            <input type="text" hidden name="vehicle-id" name="vehicle-id" value='<%= resultSet.getInt("vehicle_id") %>'>
+                            <label for="">
+                                <span>Vehicle *</span>
+                                <input
+                                  type="text"
+                                  name="vehicle-name"
+                                  id="vehicle-name"
+                                  value='<%= resultSet.getString("vehicle_name") %>'
+                                  required
+                                />
+                            </label>
+                            <label for="">
+                                <span>Manufacturer *</span>
+                                <input
+                                  type="text"
+                                  name="vehicle-manufacturer"
+                                  id="vehicle-manufacturer"
+                                  value='<%= resultSet.getString("manufacturer") %>'
+                                  required
+                                />
+                            </label>
+                            <label for="">
+                                <span>Milage *</span>
+                                <input
+                                  type="number"
+                                  min="0"
+                                  name="vehicle-milage"
+                                  id="vehicle-milage"
+                                  value='<%= resultSet.getInt("milage") %>'
+                                  required
+                                />
+                            </label>
+                            <label for="">
+                                <span>Manufacturered Date *</span>
+                                <input
+                                  type="date"
+                                  name="vehicle-manufacturered-date"
+                                  id="vehicle-manufacturered-date"
+                                  value='<%= resultSet.getString("manufactured_date") %>'
+                                  required
+                                />
+                            </label>
+                            <label for="">
+                                <span>Color *</span>
+                                <input
+                                  style="text-transform: capitalize;"
+                                  type="text"
+                                  name="vehicle-color"
+                                  id="vehicle-color"
+                                  value='<%= resultSet.getString("color") %>'
+                                  required
+                                />
+                            </label>
+                              <button>Submit</button>
+                        </form>
+                    </div>
                 </div>
-                <div class="profile__data-field">
-                  <span>Address: </span> <span><%= resultSet.getString("address") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Contact: </span> <span><%= resultSet.getString("contact") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Date of birth: </span> <span><%= resultSet.getString("dob") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Sex: </span> <span><%= resultSet.getString("sex") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <a href='./edit_customer.jsp?ID=<%= resultSet.getInt("user_id")%>'>Edit Customer</a>
-                </div>
-               </div>
-               <div class="profile__right">
-                 <a href="./add_vehicle.jsp?ID=<%= customerID %>" class="profile__link">Add vehicle</a>
-                 <a href="./view_vehicles.jsp?ID=<%= customerID %>" class="profile__link">All Vehicles</a>
-               </div>
-            <%  
-            }
-    
-          } catch(Exception ex) {
-            out.println(ex);
-          }
-    
-      %>
-      </div>
-     
+                <% }
+                             
+            } catch(Exception ex) {
+               out.println(ex);
+             }
+
+     %>
     </div>
   </div>
   

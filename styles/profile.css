@@ -3,10 +3,8 @@
     height: 100%;
     padding-top: 20px;
     display: flex;
-    flex-direction: column;
     align-items: flex-start;
     justify-content: flex-start;
-
     color: #fff;
 }
 
@@ -29,4 +27,41 @@
 
 .profile__data-field span:first-child {
     font-weight: bold;
+}
+
+.profile__left {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    border: 1px solid red;
+}
+
+.profile__right {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-end;
+    border: 1px solid red;
+}
+
+.profile__link {
+    padding: 8px 15px;
+    border: 2px solid #2e294e;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0px;
+    font-size: 14px;
+    background: #2e294e;
+    cursor: pointer;
+    text-decoration: none !important;
+    transition: all 200ms ease-in-out;
+}
+
+.profile__link:hover {
+    filter: brightness(70%);
 }

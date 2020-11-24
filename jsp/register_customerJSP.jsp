@@ -22,7 +22,7 @@
         String vehicleName = request.getParameter("vehicle-name");
         String vehicleManufacturer = request.getParameter("vehicle-manufacturer");
         String vMilage = request.getParameter("vehicle-milage");
-        String vehicleManufactureredDate = request.getParameter("vehicle-manufacturered-date");
+        String vehicleManufacturedDate = request.getParameter("vehicle-manufacturered-date");
         String vehicleColor = request.getParameter("vehicle-color");
 
         int vehicleMilage = Integer.parseInt(vMilage);
@@ -68,7 +68,7 @@
               vehiclePStatement.setInt(1, customerID);
               vehiclePStatement.setString(2, vehicleName);
               vehiclePStatement.setString(3, vehicleManufacturer);
-              vehiclePStatement.setString(4, vehicleManufactureredDate);
+              vehiclePStatement.setString(4, vehicleManufacturedDate);
               vehiclePStatement.setInt(5, vehicleMilage);
               vehiclePStatement.setString(6, vehicleColor);
 

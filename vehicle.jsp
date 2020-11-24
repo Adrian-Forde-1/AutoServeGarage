@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer</title>
+    <title>Vehicle</title>
 
     <link rel="stylesheet" href="./styles/filter_styles.css" />
     <link rel="stylesheet" href="./styles/styles.css" />
@@ -164,38 +164,37 @@
             Connection connection = null;
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(dbURL, username, password);
-            int customerID = Integer.parseInt(request.getParameter("ID"));
+            int vehicleID = Integer.parseInt(request.getParameter("ID"));
             
-            String queryString = "SELECT * FROM User WHERE user_id = '" + customerID + "'";
+            String queryString = "SELECT * FROM Vehicle WHERE vehicle_id = '" + vehicleID + "'";
     
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(queryString);
             
            if(resultSet.next()) {%>
                <div class="profile__left">
-                <span class="profile__name"><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %> - Customer</span>
+                <span class="profile__name"><%= resultSet.getString("vehicle_name") %> - Vehicle</span>
                 <div class="profile__data-field">
-                  <span>ID: </span> <span><%= resultSet.getInt("user_id") %></span>
+                  <span>ID: </span> <span><%= resultSet.getInt("vehicle_id") %></span>
                 </div>
                 <div class="profile__data-field">
-                  <span>Address: </span> <span><%= resultSet.getString("address") %></span>
+                  <span>Manufacturer: </span> <span><%= resultSet.getString("manufacturer") %></span>
                 </div>
                 <div class="profile__data-field">
-                  <span>Contact: </span> <span><%= resultSet.getString("contact") %></span>
+                  <span>Manufactured Date: </span> <span><%= resultSet.getString("manufactured_date") %></span>
                 </div>
                 <div class="profile__data-field">
-                  <span>Date of birth: </span> <span><%= resultSet.getString("dob") %></span>
+                  <span>Milage: </span> <span><%= resultSet.getString("milage") %></span>
                 </div>
                 <div class="profile__data-field">
-                  <span>Sex: </span> <span><%= resultSet.getString("sex") %></span>
+                  <span>Color: </span> <span style="text-transform: capitalize;"><%= resultSet.getString("color") %></span>
                 </div>
                 <div class="profile__data-field">
-                  <a href='./edit_customer.jsp?ID=<%= resultSet.getInt("user_id")%>'>Edit Customer</a>
+                  <span>Times Serviced: </span> <span style="text-transform: capitalize;"><%= resultSet.getString("times_serviced") %></span>
                 </div>
-               </div>
-               <div class="profile__right">
-                 <a href="./add_vehicle.jsp?ID=<%= customerID %>" class="profile__link">Add vehicle</a>
-                 <a href="./view_vehicles.jsp?ID=<%= customerID %>" class="profile__link">All Vehicles</a>
+                <div class="profile__data-field">
+                  <a href='./edit_vehicle.jsp?ID=<%= resultSet.getInt("vehicle_id")%>'>Edit Vehicle</a>
+                </div>
                </div>
             <%  
             }
