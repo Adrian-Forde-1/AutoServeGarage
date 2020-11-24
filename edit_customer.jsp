@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mechanic</title>
+    <title>Edit Customer</title>
 
     <link rel="stylesheet" href="./styles/filter_styles.css" />
     <link rel="stylesheet" href="./styles/styles.css" />
@@ -153,7 +153,6 @@
       </div>
     </nav>
     <div class="dashboard__content">
-      <div class="profile__wrapper">
         <%
         String dbURL = "jdbc:mysql://localhost:3306/autoserve";
         String username = "root";
@@ -164,51 +163,95 @@
             Connection connection = null;
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(dbURL, username, password);
-            int mechanicID = Integer.parseInt(request.getParameter("ID"));
+            int customerID = Integer.parseInt(request.getParameter("ID"));
             
-            String queryString = "SELECT * FROM Mechanic WHERE mechanic_id = '" + mechanicID + "'";
+            String queryString = "SELECT * FROM User WHERE user_id = '" + customerID + "'";
     
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(queryString);
             
-           if(resultSet.next()) {
-            Statement garageStatement = connection.createStatement();
-            int garageID = resultSet.getInt("garage_id");
-            ResultSet garageResultSet = garageStatement.executeQuery("SELECT name FROM garage WHERE garage_id = '" + garageID + "'");
-
-              if(garageResultSet.next()) {  %>
-                <span class="profile__name"><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %> - Mechanic</span>
-                <div class="profile__data-field">
-                  <span>ID: </span> <span><%= resultSet.getInt("mechanic_id") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Address: </span> <span><%= resultSet.getString("address") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Contact: </span> <span><%= resultSet.getString("contact") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Date of birth: </span> <span><%= resultSet.getString("dob") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Sex: </span> <span><%= resultSet.getString("sex") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Garage: </span> <span><%= garageResultSet.getString("name") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <a href='./edit_mechanic.jsp?ID=<%= resultSet.getInt("mechanic_id")%>'>Edit Mechanic</a>
-                </div>
-            <%  }
-            }
+           if(resultSet.next()) { %>
+                <div class="form__wrapper">
+                    <div class="form__body">
+                        <h3>Edit Customer</h3>
+                        <form action="./jsp/edit_customerJSP.jsp" method="POST">
+                            <input type="text" hidden name="customer-id" name="customer-id" value='<%= resultSet.getInt("user_id") %>'>
+                          <label for="">
+                            <span>First Name *</span>
+                            <input
+                              type="text"
+                              name="customer-f-name"
+                              id="customer-f-name"
+                              value='<%= resultSet.getString("fname") %>'
+                              required
+                            />
+                          </label>
+                          <label for="">
+                            <span>Last Name *</span>
+                            <input
+                              type="text"
+                              name="customer-l-name"
+                              id="customer-l-name"
+                              value='<%= resultSet.getString("lname") %>'
+                              required
+                            />
+                          </label>
+                          <label for="">
+                            <span>Email *</span>
+                            <input
+                              type="email"
+                              name="customer-email"
+                              id="customer-email"
+                              required
+                              value='<%= resultSet.getString("email") %>'
+                              autocomplete="none"
+                            />
+                          </label>
+                          <label for="">
+                            <span>Address</span>
+                            <input
+                              type="text"
+                              name="customer-address"
+                              id="customer-address"
+                              value='<%= resultSet.getString("address") %>'
+                              required
+                              autocomplete="none"
+                            />
+                          </label>
+                          <label for="">
+                            <span>Contact *</span>
+                            <input
+                              type="text"
+                              name="customer-contact"
+                              id="customer-contact"
+                              value='<%= resultSet.getString("contact") %>'
+                              required
+                              autocomplete="none"
+                            />
+                          </label>
+                          <label for="">
+                            <span>Date of Birth *</span>
+                            <input type="date" name="customer-dob" id="customer-dob" required value='<%= resultSet.getString("dob") %>'/>
+                          </label>
+                          <label for="">
+                            <span>Sex *</span>
+                            <select name="customer-sex" id="customer-sex">
+                                <option value='<%= resultSet.getString("sex") %>' selected hidden><%= resultSet.getString("sex") %></option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                          </label>
+                         <% }
+                             
+                               } catch(Exception ex) {
+                                  out.println(ex);
+                                 }
     
-          } catch(Exception ex) {
-            out.println(ex);
-          }
-    
-      %>
-      </div>
-     
+                              %>
+                              <button>Submit</button>
+                        </form>
+                    </div>
+                </div>
     </div>
   </div>
   

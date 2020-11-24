@@ -46,7 +46,7 @@
         </a>
       </div>
       <div>
-        <a href="staff_dashboard.html">
+        <a href="staff_dashboard.jsp">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             aria-hidden="true"
