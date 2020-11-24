@@ -129,3 +129,29 @@
   color: #2e294e;
 }
 /*# sourceMappingURL=form.css.map */
+
+.h-align-label-items {
+  border: 1px solid red;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.h-align-label-items:span {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.calculator-cost {
+  color: #ffc627;
+  margin: 0 auto;
+  display: block;
+  font-size: 20px !important;
+}
+
+.calculator-cost span {
+  font-size: 20px !important;
+}

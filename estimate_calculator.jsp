@@ -155,7 +155,7 @@
       <div class="dashboard__content">
         <div class="form__wrapper">
           <div class="form__body">
-            <h3>Register Mechanic</h3>
+            <h3>Estimate Calculator</h3>
             <form action="./jsp/add_mechanicJSP.jsp" method="POST">
               <%
 
@@ -169,57 +169,25 @@
                     Class.forName("com.mysql.jdbc.Driver");
                     connection = DriverManager.getConnection(dbURL, username, password);
                     
-                    String queryString = "SELECT * FROM Specialization";
+                    String queryString = "SELECT * FROM Services_Offered";
 
                     Statement statement = connection.createStatement();
                     ResultSet resultSet = statement.executeQuery(queryString);
+                    while(resultSet.next()) {
               %>
-              <label for="">
-                <span>Specialization *</span>
-                <select name="mechanic-specialization" id="mechanic-specialization">
-                  <% while(resultSet.next()) { %>
-                    <option value='<%= resultSet.getInt("specialization_id") %>'><%= resultSet.getString("specialization") %></option>
-                  <% } %>
-                </select>
+              <label for="" class="h-align-label-items">
+                <input type="checkbox" name="calculator-cost" id="calculator-cost" value='<%= resultSet.getInt("cost") %>'>
+                <span><%= resultSet.getString("service") %></span>
               </label>
 
-              <%
+              <% }
                     
                   } catch(Exception ex) {
                     out.println(ex);
                   }
 
               %>
-
-              <%
-                  try {
-                  
-                    Connection connection = null;
-                    Class.forName("com.mysql.jdbc.Driver");
-                    connection = DriverManager.getConnection(dbURL, username, password);
-
-                    String queryString = "SELECT * FROM Garage";
-                  
-                    Statement statement = connection.createStatement();
-                    ResultSet resultSet = statement.executeQuery(queryString);
-              %>
-              <label for="">
-                <span>Garage *</span>
-                <select name="mechanic-garage-id" id="mechanic-garage-id">
-                  <% while(resultSet.next()) { %>
-                    <option value='<%= resultSet.getInt("garage_id") %>'><%= resultSet.getString("name") %></option>
-                  <% } %>
-                </select>
-              </label>
-            
-              <%
-
-                  } catch(Exception ex) {
-                    out.println(ex);
-                  }
-                
-              %>
-              <button>Submit</button>
+              <h3 class="calculator-cost">$<span>0</span></h3>
             </form>
           </div>
         </div>
