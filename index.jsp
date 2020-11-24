@@ -52,7 +52,7 @@
                 </li>
           <% } else if(usrRole.equals("Customer")) { %>
                 <li class="navlist-item">
-                  <a href="client_dashboard.html">Dashboard</a>
+                  <a href="customer_dashboard.html">Dashboard</a>
                 </li>
           <% } %>
             <li class="navlist-item">
@@ -104,7 +104,7 @@
                 <a href="staff_dashboard.jsp">Dashboard</a>
                 <a href="store.jsp">Store</a>
             <% } else if (usrRole.equals("Customer")) {%>
-                <a href="client_dashboard.html">Dashboard</a>
+                <a href="customer_dashboard.html">Dashboard</a>
                 <a href="store.jsp">Store</a>
             <% }
                } else { %>

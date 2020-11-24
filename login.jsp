@@ -14,7 +14,9 @@
       href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/login.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
+    <link rel="stylesheet" href="./styles/navbar.css" />
     <title>AutoServe | Login</title>
   </head>
   <body>
@@ -57,7 +59,7 @@
       </nav>
       <div class="login__body">
         <h3>Login</h3>
-        <form action="./jsp/login.jsp" method="POST" id="login-form">
+        <form action="./jsp/loginJSP.jsp" method="POST" id="login-form">
           <label for="">
             <span>Email</span>
             <input
