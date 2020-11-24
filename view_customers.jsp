@@ -153,19 +153,15 @@
         </nav>
         <div class="dashboard__content">
           <h2 class="overview-header">
-            Mechanics
+            Customers
           </h2>
   
           <input
             type="text"
             id="myInput"
-            onkeyup="myFunction()"
             placeholder="Filter client names.."
             title="Type in a name"
           />
-
-          
-  
           <table id="myTable">
             <thead>
               <tr class="header">
@@ -198,7 +194,7 @@
                   <tr>
                     <td><%= resultSet.getInt("user_id") %></td>
                     <td>
-                        <a href='./customer.jsp?ID=<%= resultSet.getInt("user_id")%>'><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %></a>
+                        <a href='./customer.jsp?ID=<%= resultSet.getInt("user_id")%>' class="filter-by"><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %></a>
                     </td>
                     <td><%= resultSet.getString("address") %></td>
                     <td><%= resultSet.getString("contact") %></td>
@@ -216,5 +212,10 @@
           </table>
         </div>
       </div>
+      <!-- <script src="scripts/filter.js"></script> -->
+      <script src="scripts/table_filter.js"></script>
+      <script>
+        console.log("SCRIPPPPPPPPPPPPPp")
+      </script>
 </body>
 </html>

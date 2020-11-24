@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer</title>
 
-    <link rel="stylesheet" href="./styles/filter_styles.css" />
-    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
     <link rel="stylesheet" href="./styles/profile.css">
 
     <!-- Montserrat Font -->
@@ -190,12 +190,12 @@
                   <span>Sex: </span> <span><%= resultSet.getString("sex") %></span>
                 </div>
                 <div class="profile__data-field">
-                  <a href='./edit_customer.jsp?ID=<%= resultSet.getInt("user_id")%>'>Edit Customer</a>
+                  <a href='./edit_customer.jsp?ID=<%= resultSet.getInt("user_id")%>' class="profile__link">Edit Customer</a>
                 </div>
                </div>
                <div class="profile__right">
-                 <a href="./add_vehicle.jsp?ID=<%= customerID %>" class="profile__link">Add vehicle</a>
-                 <a href="./view_vehicles.jsp?ID=<%= customerID %>" class="profile__link">All Vehicles</a>
+                 <a href="./add_vehicle.jsp?ID=<%= customerID %>" class="profile__link">Add Vehicle</a>
+                 <a href="./view_vehicles.jsp?ID=<%= customerID %>" class="profile__link" style="margin-top: 15px;">All Vehicles</a>
                </div>
             <%  
             }

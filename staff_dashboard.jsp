@@ -13,7 +13,9 @@
       href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/styles.css" />
+    <!-- <link rel="stylesheet" href="./styles/styles.css" /> -->
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
     <title>Dashboard | Staff</title>
   </head>
   <body>

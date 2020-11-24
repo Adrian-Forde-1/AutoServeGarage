@@ -7,7 +7,9 @@
     <title>View Specializations</title>
 
     <link rel="stylesheet" href="./styles/filter_styles.css" />
-    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="stylesheet" href="./styles/form.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
 
     <!-- Montserrat Font -->
     <link
@@ -196,7 +198,7 @@
                   
                   <tr>
                     <td colspan="1"><%= resultSet.getInt("specialization_id") %></td>
-                    <td colspan="10">
+                    <td colspan="10" class="filter-by">
                         <%= resultSet.getString("specialization") %>
                     </td>
                     <td colspan="1">
@@ -215,5 +217,6 @@
           </table>
         </div>
       </div>
+      <script src="./scripts/table_filter.js"></script>
 </body>
 </html>

@@ -14,7 +14,9 @@
       href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="stylesheet" href="./styles/form.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
     <title>Register Mechanic</title>
   </head>
   <body>
@@ -42,7 +44,7 @@
           </a>
         </div>
         <div>
-          <a href="staff_dashboard.html">
+          <a href="staff_dashboard.jsp">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"

@@ -197,7 +197,7 @@
                   <span>Garage: </span> <span><%= garageResultSet.getString("name") %></span>
                 </div>
                 <div class="profile__data-field">
-                  <a href='./edit_mechanic.jsp?ID=<%= resultSet.getInt("mechanic_id")%>'>Edit Mechanic</a>
+                  <a href='./edit_mechanic.jsp?ID=<%= resultSet.getInt("mechanic_id")%>' class="profile__link">Edit Mechanic</a>
                 </div>
             <%  }
             }

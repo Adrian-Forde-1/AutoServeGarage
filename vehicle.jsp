@@ -193,7 +193,7 @@
                   <span>Times Serviced: </span> <span style="text-transform: capitalize;"><%= resultSet.getString("times_serviced") %></span>
                 </div>
                 <div class="profile__data-field">
-                  <a href='./edit_vehicle.jsp?ID=<%= resultSet.getInt("vehicle_id")%>'>Edit Vehicle</a>
+                  <a href='./edit_vehicle.jsp?ID=<%= resultSet.getInt("vehicle_id")%>' class="profile__link">Edit Vehicle</a>
                 </div>
                </div>
             <%  

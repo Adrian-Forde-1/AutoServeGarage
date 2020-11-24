@@ -1,11 +1,22 @@
 function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
+  var input;
+  var filter;
+  var table;
+  var tr;
+  var td;
+  var i;
+  var txtValue;
+  console.log("my function")
+
   input = document.getElementById("myInput");
   filter = input.value.toUpperCase();
+  
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
+
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[0];
+    td = tr[i].querySelector('.filter-by');
+    console.log(td);
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -16,3 +27,11 @@ function myFunction() {
     }       
   }
 }
+
+if(document.querySelector('#myInput')) {
+  document.querySelector('#myInput').addEventListener('change', () => {
+    console.log("Input changed");
+  })
+}
+
+console.log("HIIIIIIIIII")
