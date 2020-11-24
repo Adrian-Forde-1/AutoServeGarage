@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./styles/dashboard.css" />
     <link rel="stylesheet" href="./styles/form.css" />
     <link rel="stylesheet" href="./styles/global.css" />
-    <title>Register Mechanic</title>
+    <title>Add Vehicle</title>
   </head>
   <body>
     <div class="dashboard__wrapper">
@@ -152,138 +152,63 @@
         </div>
       </nav>
       <!-- Sidenav End -->
+      <%
+        String cID = request.getParameter("ID");
+        int customerID = Integer.parseInt(cID);
+      %>
       <div class="dashboard__content">
         <div class="form__wrapper">
           <div class="form__body">
-            <h3>Register Mechanic</h3>
-            <form action="./jsp/add_mechanicJSP.jsp" method="POST">
-              <label for="">
-                <span>First Name *</span>
-                <input
-                  type="text"
-                  name="mechanic-f-name"
-                  id="mechanic-f-name"
-                  required
-                />
-              </label>
-              <label for="">
-                <span>Last Name *</span>
-                <input
-                  type="text"
-                  name="mechanic-l-name"
-                  id="mechanic-l-name"
-                  required
-                />
-              </label>
-              <label for="">
-                <span>Email *</span>
-                <input
-                  type="email"
-                  name="mechanic-email"
-                  id="mechanic-email"
-                  required
-                  autocomplete="none"
-                />
-              </label>
-              <label for="">
-                <span>Address</span>
-                <input
-                  type="text"
-                  name="mechanic-address"
-                  id="mechanic-address"
-                  required
-                  autocomplete="none"
-                />
-              </label>
-              <label for="">
-                <span>Contact *</span>
-                <input
-                  type="text"
-                  name="mechanic-contact"
-                  id="mechanic-contact"
-                  required
-                  autocomplete="none"
-                />
-              </label>
-              <label for="">
-                <span>Date of Birth *</span>
-                <input type="date" name="mechanic-dob" id="mechanic-dob" required />
-              </label>
-              <label for="">
-                <span>Sex *</span>
-                <select name="mechanic-sex" id="mechanic-sex">
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                   <!-- String dbURL = "jdbc:mysql://localhost:3306/Distributed"; -->
-                </select>
-              </label>
-              <%
-
-                  String dbURL = "jdbc:mysql://localhost:3306/autoserve";
-                  String username = "root";
-                  String password = "rootUsr";
-
-                  try {
-              
-                    Connection connection = null;
-                    Class.forName("com.mysql.jdbc.Driver");
-                    connection = DriverManager.getConnection(dbURL, username, password);
-                    
-                    String queryString = "SELECT * FROM Specialization";
-
-                    Statement statement = connection.createStatement();
-                    ResultSet resultSet = statement.executeQuery(queryString);
-              %>
-              <label for="">
-                <span>Specialization *</span>
-                <select name="mechanic-specialization" id="mechanic-specialization">
-                  <% while(resultSet.next()) { %>
-                    <option value='<%= resultSet.getInt("specialization_id") %>'><%= resultSet.getString("specialization") %></option>
-                  <% } %>
-                </select>
-              </label>
-
-              <%
-                    
-                  } catch(Exception ex) {
-                    out.println(ex);
-                  }
-
-              %>
-
-              <%
-                  try {
-                  
-                    Connection connection = null;
-                    Class.forName("com.mysql.jdbc.Driver");
-                    connection = DriverManager.getConnection(dbURL, username, password);
-
-                    String queryString = "SELECT * FROM Garage";
-                  
-                    Statement statement = connection.createStatement();
-                    ResultSet resultSet = statement.executeQuery(queryString);
-              %>
-              <label for="">
-                <span>Garage *</span>
-                <select name="mechanic-garage-id" id="mechanic-garage-id">
-                  <% while(resultSet.next()) { %>
-                    <option value='<%= resultSet.getInt("garage_id") %>'><%= resultSet.getString("name") %></option>
-                  <% } %>
-                </select>
-              </label>
-            
-              <%
-
-                  } catch(Exception ex) {
-                    out.println(ex);
-                  }
-                
-              %>
-
-               
-
-                
-              <button>Submit</button>
+            <h3>Add Vehicle</h3>
+            <form action="./jsp/add_vehicleJSP.jsp" method="POST">
+                <input type="text" hidden value="<%= customerID %>" name="customer-id" id="customer-id">
+                <label for="">
+                    <span>Vehicle *</span>
+                    <input
+                      type="text"
+                      name="vehicle-name"
+                      id="vehicle-name"
+                      required
+                    />
+                  </label>
+                  <label for="">
+                    <span>Manufacturer *</span>
+                    <input
+                      type="text"
+                      name="vehicle-manufacturer"
+                      id="vehicle-manufacturer"
+                      required
+                    />
+                  </label>
+                  <label for="">
+                    <span>Milage *</span>
+                    <input
+                      type="number"
+                      min="0"
+                      name="vehicle-milage"
+                      id="vehicle-milage"
+                      required
+                    />
+                  </label>
+                  <label for="">
+                    <span>Manufacturered Date *</span>
+                    <input
+                      type="date"
+                      name="vehicle-manufacturered-date"
+                      id="vehicle-manufacturered-date"
+                      required
+                    />
+                  </label>
+                  <label for="">
+                    <span>Color *</span>
+                    <input
+                      type="text"
+                      name="vehicle-color"
+                      id="vehicle-color"
+                      required
+                    />
+                  </label>
+                  <button>Submit</button>
             </form>
           </div>
         </div>

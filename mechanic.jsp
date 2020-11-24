@@ -166,17 +166,12 @@
             connection = DriverManager.getConnection(dbURL, username, password);
             int mechanicID = Integer.parseInt(request.getParameter("ID"));
             
-            String queryString = "SELECT * FROM Mechanic WHERE mechanic_id = '" + mechanicID + "'";
+            String queryString = "SELECT m.mechanic_id as mechanic_id, m.fname as fname, m.lname as lname, g.name as garage, m.address as address, m.sex as sex, m.contact as contact, m.dob as dob FROM Mechanic m JOIN Garage g ON m.garage_id = g.garage_id WHERE mechanic_id = '" + mechanicID + "'";
     
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(queryString);
             
-           if(resultSet.next()) {
-            Statement garageStatement = connection.createStatement();
-            int garageID = resultSet.getInt("garage_id");
-            ResultSet garageResultSet = garageStatement.executeQuery("SELECT name FROM garage WHERE garage_id = '" + garageID + "'");
-
-              if(garageResultSet.next()) {  %>
+           if(resultSet.next()) { %>
                 <span class="profile__name"><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %> - Mechanic</span>
                 <div class="profile__data-field">
                   <span>ID: </span> <span><%= resultSet.getInt("mechanic_id") %></span>
@@ -194,12 +189,12 @@
                   <span>Sex: </span> <span><%= resultSet.getString("sex") %></span>
                 </div>
                 <div class="profile__data-field">
-                  <span>Garage: </span> <span><%= garageResultSet.getString("name") %></span>
+                  <span>Garage: </span> <span><%= resultSet.getString("garage") %></span>
                 </div>
                 <div class="profile__data-field">
                   <a href='./edit_mechanic.jsp?ID=<%= resultSet.getInt("mechanic_id")%>' class="profile__link">Edit Mechanic</a>
                 </div>
-            <%  }
+            <%  
             }
     
           } catch(Exception ex) {

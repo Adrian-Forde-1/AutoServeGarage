@@ -18,8 +18,6 @@
         int mechanicSpecialization = Integer.parseInt(request.getParameter("mechanic-specialization"));
         int mechanicGarageID = Integer.parseInt(request.getParameter("mechanic-garage-id"));
         
-       
-
         String username = "root";
         String password = "rootUsr";
 
