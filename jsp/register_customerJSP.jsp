@@ -57,7 +57,7 @@
 
           if(updateQuery != 0) { 
             Statement recentCustomerStatement = connection.createStatement();
-            String getCustomerQuery = "SELECT user_id FROM USER ORDER BY user_id LIMIT 1";
+            String getCustomerQuery = "SELECT user_id FROM USER ORDER BY user_id DESC LIMIT 1";
             ResultSet customerResultSet = recentCustomerStatement.executeQuery(getCustomerQuery);
             
             if(customerResultSet.next()) {
@@ -213,7 +213,7 @@
                           <div class="notification__info">
                               <span>Successfully Added Customer And Vehicle</span>
                           </div>
-                          <a href="../register_customer.html" class="notification__button">
+                          <a href="../register_customer.jsp" class="notification__button">
                               Go Back
                           </a>
                       </div>

@@ -4,7 +4,7 @@
 
   if(userRole == null) {
     response.sendRedirect("./login.jsp");
-  } else if(!userRole.equals("Staff")) {
+  } else if(!userRole.equals("Customer")) {
     response.sendRedirect("./not_found.html");
   }
 %>
