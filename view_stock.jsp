@@ -199,7 +199,7 @@
                  while(resultSet.next()) { %>
                     <tr>
                         <td style="text-align: center;"><%= resultSet.getInt("item_id") %></td>
-                        <td style="text-align: center;">
+                        <td style="text-align: center;" class="filter-by">
                           <%= resultSet.getString("name") %>
                         </td>
                         <td style="text-align: center;"><%= resultSet.getString("cost") %></td>
