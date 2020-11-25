@@ -4,6 +4,44 @@
   font-size: 26px;
 }
 
+.overview-header-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 50px 0px 30px 0px;
+  color: #fff;
+  font-size: 26px;
+}
+
+.overview-header-container span {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.overview-header-container a {
+  padding: 8px 15px;
+  border: 2px solid #2e294e;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 0px;
+  font-size: 14px;
+  background: #2e294e;
+  cursor: pointer;
+  text-decoration: none !important;
+  transition: all 200ms ease-in-out;
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+.overview-header-container a {
+  margin-right: 0px;
+}
+
+.overview-header-container a:hover {
+  filter: brightness(70%);
+}
+
 #myInput {
   /* background-image: url("/css/searchicon.png"); */
   background-position: 10px 10px;
@@ -35,6 +73,29 @@
 #myTable tr.header,
 #myTable tr:hover {
   background-color: #f1f1f1;
+}
+
+#myTable thead {
+  width: 100%;
+}
+
+#myTable thead tr {
+  width: 100%;
+  display: table;
+  table-layout: fixed;
+}
+#myTable tbody {
+  width: 100%;
+  display: block;
+  height: 65vh;
+  max-height: 65vh;
+  overflow: auto;
+}
+
+#myTable tbody tr{
+  width: 100%;
+  display: table;
+  table-layout: fixed;
 }
 
 #myTable thead tr th {

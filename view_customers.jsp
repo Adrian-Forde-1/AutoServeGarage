@@ -172,13 +172,21 @@
             </tr>
           </thead>
           <tbody>
-            <% String dbURL = "jdbc:mysql://localhost:3306/autoserve"; String
-            username = "root"; String password = "rootUsr"; try { Connection
-            connection = null; Class.forName("com.mysql.jdbc.Driver");
-            connection = DriverManager.getConnection(dbURL, username, password);
-            String queryString = "SELECT * FROM User WHERE role = 2"; Statement
-            statement = connection.createStatement(); ResultSet resultSet =
-            statement.executeQuery(queryString); while(resultSet.next()) {%>
+            <% 
+            String dbURL = "jdbc:mysql://localhost:3306/autoserve"; 
+            String username = "root"; String password = "rootUsr"; 
+            
+            try { 
+              Connection connection = null; 
+              Class.forName("com.mysql.jdbc.Driver");
+              connection = DriverManager.getConnection(dbURL, username, password);
+
+              String queryString = "SELECT * FROM User WHERE role = 2"; Statement
+
+              statement = connection.createStatement(); 
+              ResultSet resultSet =statement.executeQuery(queryString); 
+
+            while(resultSet.next()) {%>
             <tr>
               <td><%= resultSet.getInt("user_id") %></td>
               <td>

@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./styles/dashboard.css" />
     <link rel="stylesheet" href="./styles/form.css" />
     <link rel="stylesheet" href="./styles/global.css" />
-    <title>Register Mechanic</title>
+    <title>Add Stock</title>
   </head>
   <body>
     <div class="dashboard__wrapper">
@@ -152,138 +152,109 @@
         </div>
       </nav>
       <!-- Sidenav End -->
-      <div class="dashboard__content">
-        <div class="form__wrapper">
-          <div class="form__body">
-            <h3>Register Mechanic</h3>
-            <form action="./jsp/add_mechanicJSP.jsp" method="POST">
-              <label for="">
-                <span>First Name *</span>
-                <input
-                  type="text"
-                  name="mechanic-f-name"
-                  id="mechanic-f-name"
-                  required
-                />
-              </label>
-              <label for="">
-                <span>Last Name *</span>
-                <input
-                  type="text"
-                  name="mechanic-l-name"
-                  id="mechanic-l-name"
-                  required
-                />
-              </label>
-              <label for="">
-                <span>Email *</span>
-                <input
-                  type="email"
-                  name="mechanic-email"
-                  id="mechanic-email"
-                  required
-                  autocomplete="none"
-                />
-              </label>
-              <label for="">
-                <span>Address</span>
-                <input
-                  type="text"
-                  name="mechanic-address"
-                  id="mechanic-address"
-                  required
-                  autocomplete="none"
-                />
-              </label>
-              <label for="">
-                <span>Contact *</span>
-                <input
-                  type="text"
-                  name="mechanic-contact"
-                  id="mechanic-contact"
-                  required
-                  autocomplete="none"
-                />
-              </label>
-              <label for="">
-                <span>Date of Birth *</span>
-                <input type="date" name="mechanic-dob" id="mechanic-dob" required />
-              </label>
-              <label for="">
-                <span>Sex *</span>
-                <select name="mechanic-sex" id="mechanic-sex">
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                   <!-- String dbURL = "jdbc:mysql://localhost:3306/Distributed"; -->
-                </select>
-              </label>
-              <%
+      <%
 
-                  String dbURL = "jdbc:mysql://localhost:3306/autoserve";
-                  String username = "root";
-                  String password = "rootUsr";
+          String dbURL = "jdbc:mysql://localhost:3306/autoserve";
+          String username = "root";
+          String password = "rootUsr";
+          String sID = request.getParameter("ID");
+          int stockID = Integer.parseInt(sID);
 
-                  try {
-              
-                    Connection connection = null;
-                    Class.forName("com.mysql.jdbc.Driver");
-                    connection = DriverManager.getConnection(dbURL, username, password);
-                    
-                    String queryString = "SELECT * FROM Specialization";
+          try {
+          
+            Connection connection = null;
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(dbURL, username, password);
+            String queryString = "SELECT * FROM Item WHERE item_id = '" + stockID + "'";
+          
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(queryString);
+            if (resultSet.next()) { %>
+                <div class="dashboard__content">
+                    <div class="form__wrapper">
+                      <div class="form__body">
+                        <h3>Add Stock</h3>
+                        <form action="./jsp/edit_stockJSP.jsp" method="POST">
+                            <input type="text" hidden name="stock-id" id="stock-id" value='<%= stockID %>'>
+                            <label for="">
+                                <span>Name *</span>
+                                <input
+                                  type="text"
+                                  name="stock-name"
+                                  id="stock-name"
+                                  value='<%= resultSet.getString("name") %>'
+                                  required
+                                />
+                              </label>
+                              <label for="">
+                                <span>Cost *</span>
+                                <input
+                                  type="number"
+                                  min="0"
+                                  name="stock-cost"
+                                  id="stock-cost"
+                                  value='<%= resultSet.getString("cost") %>'
+                                  required
+                                />
+                              </label>
+                              <label for="">
+                                <span>Amount *</span>
+                                <input
+                                  type="number"
+                                  min="0"
+                                  name="stock-amount"
+                                  id="stock-amount"
+                                  value='<%= resultSet.getString("stock") %>'
+                                  required
+                                />
+                              </label>
+                              <label for="">
+                                <span>Manufacturer *</span>
+                                <input
+                                  type="text"
+                                  name="stock-manufacturer"
+                                  id="stock-manufacturer"
+                                  value='<%= resultSet.getString("manufacturer") %>'
+                                  required
+                                />
+                              </label>
+                              <%
 
-                    Statement statement = connection.createStatement();
-                    ResultSet resultSet = statement.executeQuery(queryString);
-              %>
-              <label for="">
-                <span>Specialization *</span>
-                <select name="mechanic-specialization" id="mechanic-specialization">
-                  <% while(resultSet.next()) { %>
-                    <option value='<%= resultSet.getInt("specialization_id") %>'><%= resultSet.getString("specialization") %></option>
-                  <% } %>
-                </select>
-              </label>
-
-              <%
-                    
-                  } catch(Exception ex) {
-                    out.println(ex);
-                  }
-
-              %>
-
-              <%
-                  try {
-                  
-                    Connection connection = null;
-                    Class.forName("com.mysql.jdbc.Driver");
-                    connection = DriverManager.getConnection(dbURL, username, password);
-
-                    String queryString = "SELECT * FROM Garage";
-                  
-                    Statement statement = connection.createStatement();
-                    ResultSet resultSet = statement.executeQuery(queryString);
-              %>
-              <label for="">
-                <span>Garage *</span>
-                <select name="mechanic-garage-id" id="mechanic-garage-id">
-                  <% while(resultSet.next()) { %>
-                    <option value='<%= resultSet.getInt("garage_id") %>'><%= resultSet.getString("name") %></option>
-                  <% } %>
-                </select>
-              </label>
-            
-              <%
-
-                  } catch(Exception ex) {
-                    out.println(ex);
-                  }
-                
-              %>
-              <button>Submit</button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
+                                  try {
+                                    String gQueryString = "SELECT * FROM Garage";
+                                
+                                    Statement gstatement = connection.createStatement();
+                                    ResultSet gResultSet = gstatement.executeQuery(gQueryString);
+                                    %>
+                                        <label for="">
+                                          <span>Garage *</span>
+                                          <select name="stock-garage-id" id="stock-garage-id">
+                                            <% while(gResultSet.next()) { %>
+                                              <option value='<%= gResultSet.getInt("garage_id") %>'><%= gResultSet.getString("name") %></option>
+                                            <% } %>
+                                          </select>
+                                        </label>
+                                
+                                    <%
+                                
+                                        } catch(Exception ex) {
+                                          out.println(ex);
+                                        }
+                                    
+                                    %>
+                                              
+                                              <button>Add</button>
+                                        </form>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+            <% }
+          
+                } catch(Exception ex) {
+                  out.println(ex);
+                }
+                      
+        %>
   </body>
 </html>
