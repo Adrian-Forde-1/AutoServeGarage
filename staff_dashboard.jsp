@@ -1,3 +1,13 @@
+<%@ page import="java.sql.*"%>
+<%
+  String userRole = (String)session.getAttribute("role");
+
+  if(userRole == null) {
+    response.sendRedirect("./login.jsp");
+  } else if(!userRole.equals("Staff")) {
+    response.sendRedirect("./not_found.html");
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -43,7 +53,7 @@
           </a>
         </div>
         <div>
-          <a href="staff_dashboard.html">
+          <a href="staff_dashboard.jsp">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
@@ -96,7 +106,7 @@
           </a>
         </div> -->
         <div>
-          <a href="create_job.html">
+          <a href="create_job.jsp">
             <svg
               width="1em"
               height="1em"
@@ -170,7 +180,7 @@
       <div class="dashboard__content">
         <div class="dashboard__card-container">
           <div class="dashboard__card">
-            <a href="register_customer.html">
+            <a href="register_customer.jsp">
               <div class="dashboard__card-icon">
                 <svg
                   width="1em"
@@ -315,7 +325,7 @@
             </a>
           </div>
           <div class="dashboard__card">
-            <a href="clientfilter.html">
+            <a href="view_services.jsp">
               <div class="dashboard__card-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" 
                 aria-hidden="true" 
@@ -324,7 +334,7 @@
                 height="1em" 
                 preserveAspectRatio="xMidYMid meet" 
                 viewBox="0 0 36 36">
-                  <path class="clr-i-solid clr-i-solid-path-1" d="M31 10H13a1 1 0 0 0-1 1v22a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1zm-3 16H16v-2h12zm0-4H16v-2h12zm0-4H16v-2h12z" fill="currentColor"/><path class="clr-i-solid clr-i-solid-path-2" d="M6 24V4h18V3a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v22a1 1 0 0 0 1 1h1z" fill="#fff"/><path class="clr-i-solid clr-i-solid-path-3" d="M10 28V8h18V7a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v22a1 1 0 0 0 1 1h1z" fill="#fff"/>
+                  <path class="clr-i-solid clr-i-solid-path-1" d="M31 10H13a1 1 0 0 0-1 1v22a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1zm-3 16H16v-2h12zm0-4H16v-2h12zm0-4H16v-2h12z" fill="currentColor"/><path class="clr-i-solid clr-i-solid-path-2" d="M6 24V4h18V3a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v22a1 1 0 0 0 1 1h1z" fill="currentColor"/><path class="clr-i-solid clr-i-solid-path-3" d="M10 28V8h18V7a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v22a1 1 0 0 0 1 1h1z" fill="currentColor"/>
                 </svg>
               </div>
               <span class="dashboard__card-name">Services Overview</span>
@@ -352,7 +362,7 @@
             </a>
           </div>
           <div class="dashboard__card">
-            <a href="view_all_specialization.jsp">
+            <a href="view_specializations.jsp">
               <div class="dashboard__card-icon">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

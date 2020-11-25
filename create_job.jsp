@@ -1,3 +1,13 @@
+<%@ page import="java.sql.*"%>
+<%
+  String userRole = (String)session.getAttribute("role");
+
+  if(userRole == null) {
+    response.sendRedirect("./login.jsp");
+  } else if(!userRole.equals("Staff")) {
+    response.sendRedirect("./not_found.html");
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,10 +23,8 @@
       href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/dashboard.css" />
-    <link rel="stylesheet" href="./styles/form.css" />
-    <link rel="stylesheet" href="./styles/global.css" />
-    <title>Register Customer</title>
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <title>Create Job</title>
   </head>
   <body>
     <div class="dashboard__wrapper">
@@ -43,7 +51,7 @@
           </a>
         </div>
         <div>
-          <a href="staff_dashboard.jsp">
+          <a href="staff_dashboard.html">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
@@ -154,111 +162,37 @@
       <div class="dashboard__content">
         <div class="form__wrapper">
           <div class="form__body">
-            <h3>Register Customer</h3>
-            <form action="./jsp/register_customerJSP.jsp" method="POST">
+            <h3>Create Job</h3>
+            <form action="">
               <label for="">
-                <span>First Name *</span>
-                <input
-                  type="text"
-                  name="customer-f-name"
-                  id="customer-f-name"
-                  required
-                />
+                <span>Customer *</span>
+                <input type="text" id="vehicle_name" required />
               </label>
               <label for="">
-                <span>Last Name *</span>
-                <input
-                  type="text"
-                  name="customer-l-name"
-                  id="customer-l-name"
-                  required
-                />
-              </label>
-              <label for="">
-                <span>Email *</span>
-                <input
-                  type="email"
-                  name="customer-email"
-                  id="customer-email"
-                  required
-                  autocomplete="none"
-                />
-              </label>
-              <label for="">
-                <span>Address</span>
-                <input
-                  type="text"
-                  name="customer-address"
-                  id="customer-address"
-                  autocomplete="none"
-                />
-              </label>
-              <label for="">
-                <span>Contact *</span>
-                <input
-                  type="text"
-                  name="customer-contact"
-                  id="customer-contact"
-                  required
-                  autocomplete="none"
-                />
-              </label>
-              <label for="">
-                <span>Date of Birth *</span>
-                <input type="date" name="customer-dob" id="customer-dob" required />
-              </label>
-              <label for="">
-                <span>Sex *</span>
-                <select name="customer-sex" id="customer-sex">
-                  <option value="Male" selected>Male</option>
-                  <option value="Female">Female</option>
-                </select>
+                <span>Mechanic *</span>
+                <input type="text" id="vehicle_brand" required />
               </label>
               <label for="">
                 <span>Vehicle *</span>
-                <input
-                  type="text"
-                  name="vehicle-name"
-                  id="vehicle-name"
-                  required
-                />
+                <select name="vehicle" id="vehicle" required>
+                  <option value="" selected="selected" disabled hidden></option>
+                  <option value="vehicle 1">Vehicle 1</option>
+                  <option value="vehicle 2">Vehicle 2</option>
+                  <option value="vehicle 3">Vehicle 3</option>
+                  <option value="vehicle 4">Vehicle 4</option>
+                </select>
+                <!-- <input type="text" id="customer_address" required /> -->
               </label>
               <label for="">
-                <span>Manufacturer *</span>
-                <input
-                  type="text"
-                  name="vehicle-manufacturer"
-                  id="vehicle-manufacturer"
-                  required
-                />
-              </label>
-              <label for="">
-                <span>Milage *</span>
-                <input
-                  type="number"
-                  min="0"
-                  name="vehicle-milage"
-                  id="vehicle-milage"
-                  required
-                />
-              </label>
-              <label for="">
-                <span>Manufacturered Date *</span>
-                <input
-                  type="date"
-                  name="vehicle-manufacturered-date"
-                  id="vehicle-manufacturered-date"
-                  required
-                />
-              </label>
-              <label for="">
-                <span>Color *</span>
-                <input
-                  type="text"
-                  name="vehicle-color"
-                  id="vehicle-color"
-                  required
-                />
+                <span>Repairs *</span>
+                <select name="vehicle" id="vehicle" required>
+                  <option value="" selected="selected" disabled hidden></option>
+                  <option value="repair 1">Repair 1</option>
+                  <option value="repair 2">Repair 2</option>
+                  <option value="repair 3">Repair 3</option>
+                  <option value="repair 4">Repair 4</option>
+                </select>
+                <!-- <input type="text" id="customer_address" required /> -->
               </label>
               <button>Submit</button>
             </form>

@@ -47,13 +47,13 @@
             <a href="index.jsp">Home</a>
           </li>
           <li class="navlist-item">
-            <a href="login.html">Login</a>
+            <a href="login.jsp">Login</a>
           </li>
           <li class="navlist-item">
-            <a href="about_us.html">About Us</a>
+            <a href="about_us.jsp">About Us</a>
           </li>
           <li class="navlist-item">
-            <a href="store.html">Store</a>
+            <a href="store.jsp">Store</a>
           </li>
         </ul>
       </nav>

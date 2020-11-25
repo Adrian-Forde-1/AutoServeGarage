@@ -1,4 +1,13 @@
-<%@page import="java.sql.*"%>
+<%@ page import="java.sql.*"%>
+<%
+  String userRole = (String)session.getAttribute("role");
+
+  if(userRole == null) {
+    response.sendRedirect("./login.jsp");
+  } else if(!userRole.equals("Staff")) {
+    response.sendRedirect("./not_found.html");
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -158,7 +167,7 @@
         <input
           type="text"
           id="myInput"
-          placeholder="Filter client names.."
+          placeholder="Filter customers by name"
           title="Type in a name"
         />
         <table id="myTable">

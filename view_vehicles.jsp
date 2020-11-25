@@ -1,4 +1,13 @@
-<%@page import="java.sql.*"%>
+<%@ page import="java.sql.*"%>
+<%
+  String userRole = (String)session.getAttribute("role");
+
+  if(userRole == null) {
+    response.sendRedirect("./login.jsp");
+  } else if(!userRole.equals("Staff")) {
+    response.sendRedirect("./not_found.html");
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +16,8 @@
     <title>View Vehicles</title>
 
     <link rel="stylesheet" href="./styles/filter_styles.css" />
-    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
 
     <!-- Montserrat Font -->
     <link

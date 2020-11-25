@@ -1,4 +1,13 @@
 <%@ page import="java.sql.*"%>
+<%
+  String userRole = (String)session.getAttribute("role");
+
+  if(userRole == null) {
+    response.sendRedirect("./login.jsp");
+  } else if(!userRole.equals("Staff")) {
+    response.sendRedirect("./not_found.html");
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,7 +26,7 @@
     <link rel="stylesheet" href="./styles/dashboard.css" />
     <link rel="stylesheet" href="./styles/form.css" />
     <link rel="stylesheet" href="./styles/global.css" />
-    <title>Add Stock</title>
+    <title>Edit Stock</title>
   </head>
   <body>
     <div class="dashboard__wrapper">
@@ -173,7 +182,7 @@
                 <div class="dashboard__content">
                     <div class="form__wrapper">
                       <div class="form__body">
-                        <h3>Add Stock</h3>
+                        <h3>Edit Stock</h3>
                         <form action="./jsp/edit_stockJSP.jsp" method="POST">
                             <input type="text" hidden name="stock-id" id="stock-id" value='<%= stockID %>'>
                             <label for="">

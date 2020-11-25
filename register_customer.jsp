@@ -1,11 +1,18 @@
+<%@ page import="java.sql.*"%>
+<%
+  String userRole = (String)session.getAttribute("role");
+
+  if(userRole == null) {
+    response.sendRedirect("./login.jsp");
+  } else if(!userRole.equals("Staff")) {
+    response.sendRedirect("./not_found.html");
+  }
+%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Longterm service clients</title>
-    <link rel="stylesheet" href="./styles/filter_styles.css" />
-    <link rel="stylesheet" href="./styles/styles.css" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Montserrat Font -->
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
@@ -16,8 +23,11 @@
       href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap"
       rel="stylesheet"
     />
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="stylesheet" href="./styles/form.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
+    <title>Register Customer</title>
   </head>
-
   <body>
     <div class="dashboard__wrapper">
       <nav class="dashboard__sidenav">
@@ -43,7 +53,7 @@
           </a>
         </div>
         <div>
-          <a href="staff_dashboard.html">
+          <a href="staff_dashboard.jsp">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
@@ -77,24 +87,7 @@
             </svg>
           </a>
         </div>
-        <!-- <div>
-          <a href="register_vehicle.html">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-              focusable="false"
-              width="1em"
-              height="1em"
-              preserveAspectRatio="xMidYMid meet"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M20.772 10.155l-1.368-4.104A2.995 2.995 0 0 0 16.559 4H7.441a2.995 2.995 0 0 0-2.845 2.051l-1.368 4.104A2 2 0 0 0 2 12v5c0 .738.404 1.376 1 1.723V21a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2h12v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2.277A1.99 1.99 0 0 0 22 17v-5a2 2 0 0 0-1.228-1.845zM7.441 6h9.117c.431 0 .813.274.949.684L18.613 10H5.387l1.105-3.316A1 1 0 0 1 7.441 6zM5.5 16a1.5 1.5 0 1 1 .001-3.001A1.5 1.5 0 0 1 5.5 16zm13 0a1.5 1.5 0 1 1 .001-3.001A1.5 1.5 0 0 1 18.5 16z"
-                fill="currentColor"
-              />
-            </svg>
-          </a>
-        </div> -->
+
         <div>
           <a href="create_job.html">
             <svg
@@ -167,91 +160,121 @@
           </a>
         </div>
       </nav>
+      <!-- Sidenav End -->
       <div class="dashboard__content">
-        <h2 class="overview-header">
-          Overview of current long-term service clients
-        </h2>
-
-        <input
-          type="text"
-          id="myInput"
-          onkeyup="myFunction()"
-          placeholder="Filter client names.."
-          title="Type in a name"
-        />
-
-        <table id="myTable">
-          <thead>
-            <tr class="header">
-              <th style="width: 20%">Name</th>
-              <th style="width: 10%">Client #</th>
-              <th style="width: 35%">Service</th>
-              <th style="width: 20%">Technician</th>
-              <th style="width: 15%">Days in Shop</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Andrew Lewis</td>
-              <td>13579</td>
-              <td>Diagnostic</td>
-              <td>Brandon Donaldson</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>Anthony Williams</td>
-              <td>24681</td>
-              <td>Engine repair</td>
-              <td>Emmanuel Matthews</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>Bryan Montrichard</td>
-              <td>13457</td>
-              <td>Engine replacement</td>
-              <td>David Bachew</td>
-              <td>5</td>
-            </tr>
-            <tr>
-              <td>Bianca Persad</td>
-              <td>24568</td>
-              <td>Transmission repair</td>
-              <td>David Bachew</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>Christian Lee</td>
-              <td>98653</td>
-              <td>Suspension repair</td>
-              <td>Gillian Clarke</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>Christina Valdez</td>
-              <td>64319</td>
-              <td>Transmission replacement</td>
-              <td>Brandon Donaldson</td>
-              <td>1</td>
-            </tr>
-            <tr>
-              <td>Derek Ali</td>
-              <td>75395</td>
-              <td>Engine replacement</td>
-              <td>David Bachew</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>Dianna Seebran</td>
-              <td>42865</td>
-              <td>Suspension repair</td>
-              <td>Kelvin Mungroo</td>
-              <td>4</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="form__wrapper">
+          <div class="form__body">
+            <h3>Register Customer</h3>
+            <form action="./jsp/register_customerJSP.jsp" method="POST">
+              <label for="">
+                <span>First Name *</span>
+                <input
+                  type="text"
+                  name="customer-f-name"
+                  id="customer-f-name"
+                  required
+                />
+              </label>
+              <label for="">
+                <span>Last Name *</span>
+                <input
+                  type="text"
+                  name="customer-l-name"
+                  id="customer-l-name"
+                  required
+                />
+              </label>
+              <label for="">
+                <span>Email *</span>
+                <input
+                  type="email"
+                  name="customer-email"
+                  id="customer-email"
+                  required
+                  autocomplete="none"
+                />
+              </label>
+              <label for="">
+                <span>Address</span>
+                <input
+                  type="text"
+                  name="customer-address"
+                  id="customer-address"
+                  autocomplete="none"
+                />
+              </label>
+              <label for="">
+                <span>Contact *</span>
+                <input
+                  type="text"
+                  name="customer-contact"
+                  id="customer-contact"
+                  required
+                  autocomplete="none"
+                />
+              </label>
+              <label for="">
+                <span>Date of Birth *</span>
+                <input type="date" name="customer-dob" id="customer-dob" required />
+              </label>
+              <label for="">
+                <span>Sex *</span>
+                <select name="customer-sex" id="customer-sex">
+                  <option value="Male" selected>Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </label>
+              <label for="">
+                <span>Vehicle *</span>
+                <input
+                  type="text"
+                  name="vehicle-name"
+                  id="vehicle-name"
+                  required
+                />
+              </label>
+              <label for="">
+                <span>Manufacturer *</span>
+                <input
+                  type="text"
+                  name="vehicle-manufacturer"
+                  id="vehicle-manufacturer"
+                  required
+                />
+              </label>
+              <label for="">
+                <span>Milage *</span>
+                <input
+                  type="number"
+                  min="0"
+                  name="vehicle-milage"
+                  id="vehicle-milage"
+                  required
+                />
+              </label>
+              <label for="">
+                <span>Manufacturered Date *</span>
+                <input
+                  type="date"
+                  name="vehicle-manufacturered-date"
+                  id="vehicle-manufacturered-date"
+                  required
+                />
+              </label>
+              <label for="">
+                <span>Color *</span>
+                <input
+                  type="text"
+                  name="vehicle-color"
+                  id="vehicle-color"
+                  required
+                />
+              </label>
+              <button>Submit</button>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-
-    <script src="./scripts/filter.js"></script>
   </body>
 </html>

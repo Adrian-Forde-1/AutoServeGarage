@@ -13,33 +13,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Specializations</title>
 
-    <link rel="stylesheet" href="./styles/notification.css">
-    <link rel="stylesheet" href="./styles/util.css">
-    <link rel="stylesheet" href="./styles/global.css">
-    <link rel="stylesheet" href="./styles/dashboard.css">
+    <link rel="stylesheet" href="./styles/filter_styles.css" />
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="stylesheet" href="./styles/form.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
 
-    <title>Delete Stock</title>
+    <!-- Montserrat Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Sacramento Font -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap"
+      rel="stylesheet"
+    />
 </head>
 <body>
-    <%
-    String dbURL = "jdbc:mysql://localhost:3306/autoserve";
-    String username = "root";
-    String password = "rootUsr";
-    
-    try {
-            
-        Connection connection = null;
-        Class.forName("com.mysql.jdbc.Driver");
-        connection = DriverManager.getConnection(dbURL, username, password);
-        int stockID = Integer.parseInt(request.getParameter("ID"));
-        
-        String queryString = "SELECT name FROM Item WHERE item_id = '" + stockID + "'";
-
-        Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery(queryString);
-        
-        if(resultSet.next()) {%>
     <div class="dashboard__wrapper">
         <nav class="dashboard__sidenav">
           <div>
@@ -171,30 +163,69 @@
           </div>
         </nav>
         <div class="dashboard__content">
-           <div class="flow-container center">
-            <div class="notification__wrapper">
-                <div class="notification__info">
-                    <span>Are you sure you want to remove <%= resultSet.getString("name") %>?</span>
-                </div>
-                <div>
-                    <a href='./jsp/delete_stockJSP.jsp?ID=<%= stockID %>' class="notification__button" style="margin-right: 15px;">
-                        Yes
-                     </a>
-                     <a href="view_stock.jsp" class="notification__button">
-                         No
-                     </a>
-                </div>
-            </div>
-           </div>
+          <h2 class="overview-header">
+            Mechanics
+          </h2>
+  
+          <input
+            type="text"
+            id="myInput"
+            onkeyup="myFunction()"
+            placeholder="Filter specialization by names"
+            title="Type in a name"
+          />
+
+          
+  
+          <table id="myTable">
+            <thead>
+              <tr class="header">
+                <th colspan="1">ID</th>
+                <th colspan="10">Specialization</th>
+                <th colspan="1"></th>
+              </tr>
+            </thead>
+            <tbody>
+                <%
+
+                String dbURL = "jdbc:mysql://localhost:3306/autoserve";
+                String username = "root";
+                String password = "rootUsr";
+
+                try {
+            
+                  Connection connection = null;
+                  Class.forName("com.mysql.jdbc.Driver");
+                  connection = DriverManager.getConnection(dbURL, username, password);
+                  
+                  String queryString = "SELECT * FROM Specialization";
+
+                  Statement statement = connection.createStatement();
+                  ResultSet resultSet = statement.executeQuery(queryString);
+                  
+                 while(resultSet.next()) { %>
+                  
+                  <tr>
+                    <td colspan="1"><%= resultSet.getInt("specialization_id") %></td>
+                    <td colspan="10" class="filter-by">
+                        <%= resultSet.getString("specialization") %>
+                    </td>
+                    <td colspan="1">
+                      <a href='./edit_specialization.jsp?ID=<%= resultSet.getInt("specialization_id")%>'>Edit</a>
+                    </td>
+                  </tr>
+                <%  
+                }
+
+                } catch(Exception ex) {
+                  out.println(ex);
+                }
+
+            %>
+            </tbody>
+          </table>
         </div>
       </div>
-      <%  
-    }
-
-  } catch(Exception ex) {
-    out.println(ex);
-  }
-
-%>
+      <script src="./scripts/table_filter.js"></script>
 </body>
 </html>

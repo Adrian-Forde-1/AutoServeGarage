@@ -1,4 +1,14 @@
 <%@page import="java.sql.*"%>
+<%@ page import="java.sql.*"%>
+<%
+  String userRole = (String)session.getAttribute("role");
+
+  if(userRole == "Customer" && Integer.parseInt((String)session.getAttribute("ID")) != Integer.parseInt(request.getParameter("ID"))) {
+    response.sendRedirect("./not_found.jsp");
+  }
+%>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

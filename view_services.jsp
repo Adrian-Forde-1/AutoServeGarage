@@ -1,14 +1,22 @@
-<%@page import="java.sql.*"%>
+<%@ page import="java.sql.*"%>
+<%
+  String userRole = (String)session.getAttribute("role");
+
+  if(userRole == null) {
+    response.sendRedirect("./login.jsp");
+  } else if(!userRole.equals("Staff")) {
+    response.sendRedirect("./not_found.html");
+  }
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Specializations</title>
+    <title>View Vehicles</title>
 
     <link rel="stylesheet" href="./styles/filter_styles.css" />
     <link rel="stylesheet" href="./styles/dashboard.css" />
-    <link rel="stylesheet" href="./styles/form.css" />
     <link rel="stylesheet" href="./styles/global.css" />
 
     <!-- Montserrat Font -->
@@ -65,7 +73,7 @@
             </a>
           </div>
           <div>
-            <a href="register_customer.jsp">
+            <a href="register_customer.html">
               <svg
                 width="1em"
                 height="1em"
@@ -154,26 +162,25 @@
           </div>
         </nav>
         <div class="dashboard__content">
-          <h2 class="overview-header">
-            Mechanics
-          </h2>
+          <div class="overview-header-container">
+            <span>Services</span>
+            <a href="add_service.jsp">Add Service</a>
+          </div>
   
           <input
             type="text"
             id="myInput"
             onkeyup="myFunction()"
-            placeholder="Filter client names.."
+            placeholder="Filter services by name"
             title="Type in a name"
           />
-
-          
-  
           <table id="myTable">
             <thead>
               <tr class="header">
-                <th colspan="1">ID</th>
-                <th colspan="10">Specialization</th>
-                <th colspan="1"></th>
+                <th style="text-align: center;">ID</th>
+                <th style="text-align: center;">Service</th>
+                <th style="text-align: center;">Cost</th>
+                <th style="text-align: center;"></th>
               </tr>
             </thead>
             <tbody>
@@ -189,22 +196,22 @@
                   Class.forName("com.mysql.jdbc.Driver");
                   connection = DriverManager.getConnection(dbURL, username, password);
                   
-                  String queryString = "SELECT * FROM Specialization";
+                  String queryString = "SELECT * FROM Services_Offered";
 
                   Statement statement = connection.createStatement();
                   ResultSet resultSet = statement.executeQuery(queryString);
                   
                  while(resultSet.next()) { %>
-                  
-                  <tr>
-                    <td colspan="1"><%= resultSet.getInt("specialization_id") %></td>
-                    <td colspan="10" class="filter-by">
-                        <%= resultSet.getString("specialization") %>
-                    </td>
-                    <td colspan="1">
-                      <a href='./edit_specialization.jsp?ID=<%= resultSet.getInt("specialization_id")%>'>Edit</a>
-                    </td>
-                  </tr>
+                    <tr>
+                        <td style="text-align: center;"><%= resultSet.getInt("offered_service_id") %></td>
+                        <td style="text-align: center;" class="filter-by">
+                          <%= resultSet.getString("service") %>
+                        </td>
+                        <td style="text-align: center;"><%= resultSet.getString("cost") %></td>
+                        <td style="text-align: center;">
+                            <a href='./edit_service.jsp?ID=<%= resultSet.getInt("offered_service_id")%>' class="filter-by">Edit</a>
+                        </td>
+                    </tr>
                 <%  
                 }
 
@@ -215,8 +222,8 @@
             %>
             </tbody>
           </table>
+          <script src="./scripts/table_filter.js"></script>
         </div>
       </div>
-      <script src="./scripts/table_filter.js"></script>
 </body>
 </html>
