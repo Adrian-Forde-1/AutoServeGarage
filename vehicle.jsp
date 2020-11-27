@@ -204,6 +204,13 @@
                 <div class="profile__data-field">
                   <a href='./edit_vehicle.jsp?ID=<%= resultSet.getInt("vehicle_id")%>' class="profile__link">Edit Vehicle</a>
                 </div>
+                <%
+                  if(userRole.equals("Customer")) { %>
+                    <div class="profile__data-field">
+                      <a href='./customer_view_jobs.jsp?ID=<%= resultSet.getInt("vehicle_id")%>&sID=3' class="profile__link">Vehicle Services</a>
+                    </div>
+                  <% }
+                %>
                </div>
             <%  
             }

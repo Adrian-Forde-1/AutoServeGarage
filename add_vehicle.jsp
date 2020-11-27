@@ -71,7 +71,7 @@
           </a>
         </div>
         <div>
-          <a href="register_customer.html">
+          <a href="register_customer.jsp">
             <svg
               width="1em"
               height="1em"
@@ -87,9 +87,37 @@
             </svg>
           </a>
         </div>
-
         <div>
-          <a href="create_job.html">
+          <a href="view_customers.jsp">
+            <svg 
+              xmlns="http://www.w3.org/2000/svg"
+              width="1em" 
+              height="1em" 
+              preserveAspectRatio="xMidYMid meet" 
+              viewBox="0 0 24 24">
+              <path d="M24 14.6c0 .6-1.2 1-2.6 1.2c-.9-1.7-2.7-3-4.8-3.9c.2-.3.4-.5.6-.8h.8c3.1-.1 6 1.8 6 3.5zM6.8 11H6c-3.1 0-6 1.9-6 3.6c0 .6 1.2 1 2.6 1.2c.9-1.7 2.7-3 4.8-3.9l-.6-.9zm5.2 1c2.2 0 4-1.8 4-4s-1.8-4-4-4s-4 1.8-4 4s1.8 4 4 4zm0 1c-4.1 0-8 2.6-8 5c0 2 8 2 8 2s8 0 8-2c0-2.4-3.9-5-8-5zm5.7-3h.3c1.7 0 3-1.3 3-3s-1.3-3-3-3c-.5 0-.9.1-1.3.3c.8 1 1.3 2.3 1.3 3.7c0 .7-.1 1.4-.3 2zM6 10h.3C6.1 9.4 6 8.7 6 8c0-1.4.5-2.7 1.3-3.7C6.9 4.1 6.5 4 6 4C4.3 4 3 5.3 3 7s1.3 3 3 3z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+        <div>
+          <a href="register_mechanic.jsp">
+            <svg
+              width="1em"
+              height="1em"
+              viewBox="0 0 16 16"
+              class="bi bi-wrench"
+              fill="currentColor"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M.102 2.223A3.004 3.004 0 0 0 3.78 5.897l6.341 6.252A3.003 3.003 0 0 0 13 16a3 3 0 1 0-.851-5.878L5.897 3.781A3.004 3.004 0 0 0 2.223.1l2.141 2.142L4 4l-1.757.364L.102 2.223zm13.37 9.019L13 11l-.471.242-.529.026-.287.445-.445.287-.026.529L11 13l.242.471.026.529.445.287.287.445.529.026L13 15l.471-.242.529-.026.287-.445.445-.287.026-.529L15 13l-.242-.471-.026-.529-.445-.287-.287-.445-.529-.026z"
+              />
+            </svg>
+          </a>
+        </div>
+        <div>
+          <a href="create_job.jsp">
             <svg
               width="1em"
               height="1em"
@@ -106,7 +134,7 @@
           </a>
         </div>
         <div>
-          <a href="">
+          <a href="view_jobs.jsp?sID=3">
             <svg
               width="1em"
               height="1em"
@@ -125,7 +153,20 @@
           </a>
         </div>
         <div>
-          <a href="clientfilter.html">
+          <a href="view_services.jsp">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+                aria-hidden="true" 
+                focusable="false" 
+                width="1em" 
+                height="1em" 
+                preserveAspectRatio="xMidYMid meet" 
+                viewBox="0 0 36 36">
+                  <path class="clr-i-solid clr-i-solid-path-1" d="M31 10H13a1 1 0 0 0-1 1v22a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V11a1 1 0 0 0-1-1zm-3 16H16v-2h12zm0-4H16v-2h12zm0-4H16v-2h12z" fill="currentColor"/><path class="clr-i-solid clr-i-solid-path-2" d="M6 24V4h18V3a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v22a1 1 0 0 0 1 1h1z" fill="currentColor"/><path class="clr-i-solid clr-i-solid-path-3" d="M10 28V8h18V7a1 1 0 0 0-1-1H9a1 1 0 0 0-1 1v22a1 1 0 0 0 1 1h1z" fill="currentColor"/>
+            </svg>
+          </a>
+        </div>
+        <div>
+          <a href="view_specializations.jsp">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
@@ -142,20 +183,16 @@
             </svg>
           </a>
         </div>
-        <div id="settings">
-          <a href="">
-            <svg
-              width="1em"
-              height="1em"
-              viewBox="0 0 16 16"
-              class="bi bi-gear-fill"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"
-              />
+        <div>
+          <a href="view_stock.jsp">
+            <svg xmlns="http://www.w3.org/2000/svg" 
+              aria-hidden="true" 
+              focusable="false" 
+              width="1.25em" 
+              height="1em" 
+              preserveAspectRatio="xMidYMid meet" 
+              viewBox="0 0 640 512">
+                <path d="M425.7 256c-16.9 0-32.8-9-41.4-23.4L320 126l-64.2 106.6c-8.7 14.5-24.6 23.5-41.5 23.5c-4.5 0-9-.6-13.3-1.9L64 215v178c0 14.7 10 27.5 24.2 31l216.2 54.1c10.2 2.5 20.9 2.5 31 0L551.8 424c14.2-3.6 24.2-16.4 24.2-31V215l-137 39.1c-4.3 1.3-8.8 1.9-13.3 1.9zm212.6-112.2L586.8 41c-3.1-6.2-9.8-9.8-16.7-8.9L320 64l91.7 152.1c3.8 6.3 11.4 9.3 18.5 7.3l197.9-56.5c9.9-2.9 14.7-13.9 10.2-23.1zM53.2 41L1.7 143.8c-4.6 9.2.3 20.2 10.1 23l197.9 56.5c7.1 2 14.7-1 18.5-7.3L320 64L69.8 32.1c-6.9-.8-13.5 2.7-16.6 8.9z" fill="currentColor"/>
             </svg>
           </a>
         </div>

@@ -180,7 +180,17 @@
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(queryString);
             
-           if(resultSet.next()) { %>
+           if(resultSet.next()) { 
+            String mechanicSpecializationQueryString = "SELECT specialization_id FROM Mechanic_Specialization WHERE mechanic_id = '" + resultSet.getInt("mechanic_id") + "'";
+            Statement mechanicSpecializationStatement = connection.createStatement();
+            ResultSet mechanicSpecializationResultSet = mechanicSpecializationStatement.executeQuery(mechanicSpecializationQueryString);
+
+            if(mechanicSpecializationResultSet.next()) {
+              String specializationQueryString = "SELECT specialization FROM Specialization WHERE specialization_id = '" + mechanicSpecializationResultSet.getInt("specialization_id") + "'";
+              Statement specializationStatement = connection.createStatement();
+              ResultSet specializationResultSet = specializationStatement.executeQuery(specializationQueryString);
+              
+              if(specializationResultSet.next()) {%>
                 <span class="profile__name"><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %> - Mechanic</span>
                 <div class="profile__data-field">
                   <span>ID: </span> <span><%= resultSet.getInt("mechanic_id") %></span>
@@ -198,6 +208,9 @@
                   <span>Sex: </span> <span><%= resultSet.getString("sex") %></span>
                 </div>
                 <div class="profile__data-field">
+                  <span>Specialization: </span> <span><%= specializationResultSet.getString("specialization") %></span>
+                </div>
+                <div class="profile__data-field">
                   <span>Garage: </span> <span><%= resultSet.getString("garage") %></span>
                 </div>
                 <div class="profile__data-field">
@@ -205,6 +218,8 @@
                 </div>
             <%  
             }
+          }
+        }
     
           } catch(Exception ex) {
             out.println(ex);

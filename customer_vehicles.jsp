@@ -7,7 +7,8 @@
     <title>View Vehicles</title>
 
     <link rel="stylesheet" href="./styles/filter_styles.css" />
-    <link rel="stylesheet" href="./styles/styles.css" />
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
 
     <!-- Montserrat Font -->
     <link

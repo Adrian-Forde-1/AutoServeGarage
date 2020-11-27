@@ -185,6 +185,7 @@
                 <th>Contact</th>
                 <th>Sex</th>
                 <th>Garage</th>
+                <th>Specialization</th>
               </tr>
             </thead>
             <tbody>
@@ -201,22 +202,36 @@
                   connection = DriverManager.getConnection(dbURL, username, password);
                   
                   String queryString = "SELECT m.mechanic_id AS mechanic_id, m.fname as fname, m.lname as lname, m.address as address, m.contact as contact, m.sex as sex, g.name as garage FROM Mechanic m JOIN Garage g ON m.garage_id = g.garage_id";
-
                   Statement statement = connection.createStatement();
                   ResultSet resultSet = statement.executeQuery(queryString);
+
                   
-                 while(resultSet.next()) {%>
-                  <tr>
-                    <td><%= resultSet.getInt("mechanic_id") %></td>
-                    <td>
-                        <a href='./mechanic.jsp?ID=<%= resultSet.getInt("mechanic_id")%>'><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %></a>
-                    </td>
-                    <td><%= resultSet.getString("address") %></td>
-                    <td><%= resultSet.getString("contact") %></td>
-                    <td><%= resultSet.getString("sex") %></td>
-                    <td><%= resultSet.getString("garage") %></td>
-                </tr>
-                <%  
+                 while(resultSet.next()) {
+                    
+                  String mechanicSpecializationQueryString = "SELECT specialization_id FROM Mechanic_Specialization WHERE mechanic_id = '" + resultSet.getInt("mechanic_id") + "'";
+                  Statement mechanicSpecializationStatement = connection.createStatement();
+                  ResultSet mechanicSpecializationResultSet = mechanicSpecializationStatement.executeQuery(mechanicSpecializationQueryString);
+
+                  if(mechanicSpecializationResultSet.next()) {
+                    String specializationQueryString = "SELECT specialization FROM Specialization WHERE specialization_id = '" + mechanicSpecializationResultSet.getInt("specialization_id") + "'";
+                    Statement specializationStatement = connection.createStatement();
+                    ResultSet specializationResultSet = specializationStatement.executeQuery(specializationQueryString);
+
+                    if(specializationResultSet.next()) { %>
+                      <tr>
+                        <td><%= resultSet.getInt("mechanic_id") %></td>
+                        <td>
+                            <a href='./mechanic.jsp?ID=<%= resultSet.getInt("mechanic_id")%>'><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %></a>
+                        </td>
+                        <td><%= resultSet.getString("address") %></td>
+                        <td><%= resultSet.getString("contact") %></td>
+                        <td><%= resultSet.getString("sex") %></td>
+                        <td><%= resultSet.getString("garage") %></td>
+                        <td><%= specializationResultSet.getString("specialization") %></td>
+                      </tr>
+                    <%
+                    }
+                  }
                 }
 
                 } catch(Exception ex) {

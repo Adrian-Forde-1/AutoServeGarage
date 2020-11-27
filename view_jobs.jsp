@@ -187,8 +187,7 @@
         <input
           type="text"
           id="myInput"
-          onkeyup="myFunction()"
-          placeholder="Filter Service ID..."
+          placeholder="Filter Jobs by date"
           title="Type in a name"
         />
 
@@ -240,7 +239,7 @@
         				<td> <%=resultSet.getInt("vehicle_id")%>  </td>
         				<td> <a href='job.jsp?ID=<%=resultSet.getInt("service_id")%>'><%=resultSet.getString("vehicle_name")%></a> </td>
         				<td> <%=resultSet.getString("mFName")%> <%=resultSet.getString("mLName")%> </td>
-        				<td> <%=resultSet.getString("date")%>  </td>
+        				<td class="filter-by"> <%=resultSet.getString("date")%>  </td>
         				<td> <%=resultSet.getString("job_status")%>  </td>
         			</tr>
 
@@ -251,7 +250,7 @@
         }
         %>
 		</tbody>
-    <script src="./scripts/filter.js"></script>
+    <script src="./scripts/table_filter.js"></script>
 	
 	</table>
 	</body>
