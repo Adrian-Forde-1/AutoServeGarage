@@ -167,7 +167,7 @@
             connection = DriverManager.getConnection(dbURL, username, password);
             int jobID = Integer.parseInt(request.getParameter("ID"));
             
-            String queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date, notes FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id WHERE service_id = '" + jobID + "'";
+            String queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date, notes, sh.status as status, js.status as status_name FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id JOIN Job_Status js ON sh.status = js.status_id WHERE service_id = '" + jobID + "'";
     
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(queryString);
@@ -194,6 +194,9 @@
                       <span>Service Date: </span> <span><%= resultSet.getString("date") %></span>
                     </div>
                     <div class="profile__data-field">
+                      <span>Status: </span> <span><%= resultSet.getString("status_name") %></span>
+                    </div>
+                    <div class="profile__data-field">
                       <span>Services on job:</span>
                     </div>
                     <%
@@ -208,8 +211,12 @@
                    <%
                    String userRole = (String)session.getAttribute("role");
        
-                   if(userRole.equals("Staff")) { %>
+                   if(userRole.equals("Staff") && resultSet.getInt("status") == 2) { %>
                     <a href="./invoice.jsp?ID=<%= jobID %>" class="profile__link">Generate Invoice</a>
+                   <% } %>
+                   <%
+                      if(userRole.equals("Staff") && resultSet.getInt("status") == 1) { %>
+                      <a href='./jsp/complete_jobJSP.jsp?ID=<%= jobID %>&vID=<%= resultSet.getInt("vehicle_id") %>' class="profile__link">Complete Job</a>
                    <% } %>
                </div>
             <%  

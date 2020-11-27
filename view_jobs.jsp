@@ -195,11 +195,12 @@
     <table id="myTable">
         <thead>
             <tr class="header">
-              <th style="width: 10%">Service ID</th>
-              <th style="width: 10%">Vehicle ID</th>
-              <th style="width: 10%">Vehicle Name</th>
-              <th style="width: 10%">Mechanic</th>
-              <th style="width: 10%">Service Date</th>
+              <th>Service ID</th>
+              <th>Vehicle ID</th>
+              <th>Vehicle Name</th>
+              <th>Mechanic</th>
+              <th>Service Date</th>
+              <th>Status</th>
             </tr>
         </thead>
 		<tbody>
@@ -224,11 +225,11 @@
         String queryString = "";
 
         if(statusID == 1) {
-          queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id WHERE status = 1 ORDER BY date";
+          queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date, js.status as job_status FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id JOIN Job_Status js ON sh.status = js.status_id WHERE sh.status = 1 ORDER BY date DESC";
         } else if (statusID == 2) {
-           queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id WHERE status = 2 ORDER BY date";
+          queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date, js.status as job_status FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id JOIN Job_Status js ON sh.status = js.status_id WHERE sh.status = 2 ORDER BY date DESC";
         } else {
-          queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id ORDER BY date";
+          queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date, js.status as job_status FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id JOIN Job_Status js ON sh.status = js.status_id ORDER BY date DESC";
         }
         
         resultSet=statement.executeQuery(queryString);
@@ -240,6 +241,7 @@
         				<td> <a href='job.jsp?ID=<%=resultSet.getInt("service_id")%>'><%=resultSet.getString("vehicle_name")%></a> </td>
         				<td> <%=resultSet.getString("mFName")%> <%=resultSet.getString("mLName")%> </td>
         				<td> <%=resultSet.getString("date")%>  </td>
+        				<td> <%=resultSet.getString("job_status")%>  </td>
         			</tr>
 
         <%

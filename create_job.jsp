@@ -44,7 +44,7 @@
           </a>
         </div>
         <div>
-          <a href="staff_dashboard.html">
+          <a href="staff_dashboard.jsp">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
@@ -62,7 +62,7 @@
           </a>
         </div>
         <div>
-          <a href="register_customer.html">
+          <a href="register_customer.jsp">
             <svg
               width="1em"
               height="1em"
@@ -80,7 +80,7 @@
         </div>
 
         <div>
-          <a href="create_job.html">
+          <a href="create_job.jsp">
             <svg
               width="1em"
               height="1em"
@@ -116,7 +116,7 @@
           </a>
         </div>
         <div>
-          <a href="clientfilter.html">
+          <a href="clientfilter.jsp">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"

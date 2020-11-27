@@ -4,73 +4,50 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+    <link rel="stylesheet" href="../styles/styles.css">
     <link rel="stylesheet" href="../styles/notification.css">
     <link rel="stylesheet" href="../styles/util.css">
-    <link rel="stylesheet" href="../styles/global.css">
-    <link rel="stylesheet" href="../styles/dashboard.css">
-    <title>Register Customer</title>
+    <title>Document</title>
   </head>
   <body>
     <%
+        int jobID = Integer.parseInt(request.getParameter("ID"));
+        int vehicleID = Integer.parseInt(request.getParameter("vID"));
+        
+        String username = "root";
+        String password = "rootUsr";
 
-    String vID = request.getParameter("vehicle-id"); 
-		String mID = request.getParameter("mechanic-id"); 
-		String serviceDate = request.getParameter("service-date"); 
-    String note = request.getParameter("note");
-    String[] services = request.getParameterValues("vehicle-service");
-    
-		
+        try {
+          Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/autoserve", username, password);;
+          Class.forName("com.mysql.jdbc.Driver");
 
-    int vehicleID = Integer.parseInt(vID);
-		int mechanicID = Integer.parseInt(mID);
-    
-    String dbURL = "jdbc:mysql://localhost:3306/autoserve";
-    String username = "root";
-    String password = "rootUsr";
+          PreparedStatement pstatement = null;
+          String queryString = "UPDATE Service_History SET status=2 WHERE service_id = '" + jobID + "'";
+          pstatement = connection.prepareStatement(queryString);
 
-		try {
-      Connection connection = null;
-      Class.forName("com.mysql.jdbc.Driver");
-      connection = DriverManager.getConnection(dbURL, username, password);
+          int updateQuery = pstatement.executeUpdate();
 
-		  PreparedStatement pstatement = null;
-      int updateQuery = 0;
-      
-      String query = "INSERT INTO Service_History (vehicle_id, mechanic_id, service_date, notes) VALUES (?,?,?,?)";
+          if(updateQuery != 0) { 
 
-      pstatement = connection.prepareStatement(query);
-      pstatement.setInt(1, vehicleID);
-      pstatement.setInt(2, mechanicID);
-      pstatement.setString(3, serviceDate);
-      pstatement.setString(4, note);
+            String getVehicleString = "SELECT times_serviced FROM Vehicle WHERE vehicle_id = '" + vehicleID + "'";
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(getVehicleString);
 
-      updateQuery = pstatement.executeUpdate();
+            if(resultSet.next()) {
+              int timesServiced = resultSet.getInt("times_serviced");
+              timesServiced = timesServiced + 1;
 
-          if(updateQuery != 0) {
+              PreparedStatement vehicleStatement = null;
+              String vehicleQueryString = "UPDATE Vehicle SET times_serviced=? WHERE vehicle_id = '" + vehicleID + "'";
+              vehicleStatement = connection.prepareStatement(vehicleQueryString);
+              vehicleStatement.setInt(1, timesServiced);
+              int vehicleUpdateQuery = vehicleStatement.executeUpdate();
 
-            Statement serviceStatement = connection.createStatement();
-            String serviceQuery = "SELECT service_id FROM Service_History ORDER BY service_id DESC LIMIT 1";
-            ResultSet serviceResultSet = serviceStatement.executeQuery(serviceQuery);
-
-            if(serviceResultSet.next()) {
-              int updateSHQuery = 0;
-              for(int i = 0; i < services.length; i++) {
-                PreparedStatement sHStatement = null;
-                String serviceOnJobQuery = "INSERT INTO Services_On_Job (service_id, offered_service_id) VALUES (?,?)";
-
-                sHStatement = connection.prepareStatement(serviceOnJobQuery);
-                sHStatement.setInt(1, serviceResultSet.getInt("service_id"));
-                sHStatement.setInt(2, Integer.parseInt(services[i]));
-
-                updateSHQuery = sHStatement.executeUpdate();
-              }
-
-              if(updateSHQuery != 0) { %>
+              if(vehicleUpdateQuery != 0) { %>
                 <div class="dashboard__wrapper">
                   <nav class="dashboard__sidenav">
                     <div>
-                      <a href="index.jsp">
+                      <a href="../index.jsp">
                         <svg
                           width="1em"
                           height="1em"
@@ -91,7 +68,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="staff_dashboard.jsp">
+                      <a href="../staff_dashboard.jsp">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           aria-hidden="true"
@@ -109,7 +86,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="register_customer.jsp">
+                      <a href="../register_customer.jsp">
                         <svg
                           width="1em"
                           height="1em"
@@ -126,7 +103,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="create_job.html">
+                      <a href="../create_job.jsp">
                         <svg
                           width="1em"
                           height="1em"
@@ -143,7 +120,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="">
+                      <a href="../view_jobs.jsp">
                         <svg
                           width="1em"
                           height="1em"
@@ -162,7 +139,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="clientfilter.html">
+                      <a href="../view_specializations.jsp">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           aria-hidden="true"
@@ -179,43 +156,26 @@
                         </svg>
                       </a>
                     </div>
-                    <div id="settings">
-                      <a href="">
-                        <svg
-                          width="1em"
-                          height="1em"
-                          viewBox="0 0 16 16"
-                          class="bi bi-gear-fill"
-                          fill="currentColor"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            fill-rule="evenodd"
-                            d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 0 0-5.86 2.929 2.929 0 0 0 0 5.858z"
-                          />
-                        </svg>
-                      </a>
-                    </div>
                   </nav>
                   <div class="dashboard__content">
                      <div class="flow-container center">
                       <div class="notification__wrapper">
                           <div class="notification__info">
-                              <span>Successfully Created Job</span>
+                              <span>Successfully Updated Job</span>
                           </div>
-                          <a href="../create_job.jsp" class="notification__button">
+                          <a href='../job.jsp?ID=<%= jobID %>' class="notification__button">
                               Go Back
                           </a>
                       </div>
                      </div>
                   </div>
                 </div>
-              <% }
+              <%
+              }
             }
-           
           }
         } catch(Exception ex) {
-          out.println(ex.toString());
+          out.println(ex);
         }
     %>
   </body>
