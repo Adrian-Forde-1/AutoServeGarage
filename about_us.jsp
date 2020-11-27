@@ -44,11 +44,11 @@
         String usrRole = (String)session.getAttribute("role");
         if(usrRole.equals("Staff")) { %>
               <li class="navlist-item">
-                <a href="staff_dashboard.jsp">Staff Dashboard</a>
+                <a href="staff_dashboard.jsp">Dashboard</a>
               </li>
         <% } else if(usrRole.equals("Customer")) { %>
               <li class="navlist-item">
-                <a href="customer_dashboard.html">Customer Dashboard</a>
+                <a href="customer_dashboard.jsp">Dashboard</a>
               </li>
         <% } %>
           <li class="navlist-item">

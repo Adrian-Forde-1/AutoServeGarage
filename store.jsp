@@ -1,3 +1,4 @@
+<%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -44,11 +45,11 @@
         String usrRole = (String)session.getAttribute("role");
         if(usrRole.equals("Staff")) { %>
               <li class="navlist-item">
-                <a href="staff_dashboard.jsp">Staff Dashboard</a>
+                <a href="staff_dashboard.jsp">Dashboard</a>
               </li>
         <% } else if(usrRole.equals("Customer")) { %>
               <li class="navlist-item">
-                <a href="customer_dashboard.html">Customer Dashboard</a>
+                <a href="customer_dashboard.jsp">Dashboard</a>
               </li>
         <% } %>
           <li class="navlist-item">
@@ -76,53 +77,31 @@
         <% } %>
       </ul>
     </nav>
-    <div class="container top-spacing">
+    <div class="container top-spacing" style="height: 100vh;">
       <h1 class="store-header">Store</h1>
       <div class="gallery">
-        <div class="gallery__img">
-          <img src="./assets/airfreshener.jpg" />
-          <div class="desc">Air Fresheners For Sale</div>
-        </div>
+        <% 
+            String dbURL = "jdbc:mysql://localhost:3306/autoserve"; 
+            String username = "root"; String password = "rootUsr"; 
+            
+            try { 
+              Connection connection = null; 
+              Class.forName("com.mysql.jdbc.Driver");
+              connection = DriverManager.getConnection(dbURL, username, password);
 
-        <div class="gallery__img">
-          <img src="./assets/cover.jpg" />
-          <div class="desc">Waterproof Car Cover For Sale</div>
-        </div>
+              String queryString = "SELECT * FROM Item"; 
 
-        <div class="gallery__img">
-          <img src="./assets/gauge.jpg" />
-          <div class="desc">Tire Pressure Gauge For Sale</div>
-        </div>
+              Statement statement = connection.createStatement(); 
+              ResultSet resultSet =statement.executeQuery(queryString); 
 
-        <div class="gallery__img">
-          <img src="./assets/gps.jpg" />
-          <div class="desc">Car GPS For Sale</div>
-        </div>
-
-        <div class="gallery__img">
-          <img src="./assets/mat.jpg" />
-          <div class="desc">Car Floor Mat For Sale</div>
-        </div>
-
-        <div class="gallery__img">
-          <img src="./assets/phonestand.jpg" />
-          <div class="desc">Car Phone Stand For Sale</div>
-        </div>
-
-        <div class="gallery__img">
-          <img src="./assets/puncture.jpg" />
-          <div class="desc">Puncture Repair Kit For Sale</div>
-        </div>
-
-        <div class="gallery__img">
-          <img src="./assets/tirecleaners.png" />
-          <div class="desc">Tire Cleaners For Sale</div>
-        </div>
-
-        <div class="gallery__img">
-          <img src="./assets/vacuumcleaner.jpg" />
-          <div class="desc">Car Vacuum Cleaner For Sale</div>
-        </div>
+              while(resultSet.next()) {%>
+                <div class="gallery__img">
+                  <div class="desc"><%= resultSet.getString("name") %>: $<%= resultSet.getString("cost") %></div>
+                </div>
+              <% } 
+            } catch(Exception ex) { 
+              out.println(ex); 
+            } %>
       </div>
     </div>
     <div class="footer">
