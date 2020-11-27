@@ -38,6 +38,14 @@
   margin-right: 0px;
 }
 
+.overview-header-container div {
+  margin-left: auto;
+}
+
+.overview-header-container div a{
+  margin-left: 5px !important;
+}
+
 .overview-header-container a:hover {
   filter: brightness(70%);
 }
@@ -90,6 +98,11 @@
   height: 65vh;
   max-height: 65vh;
   overflow: auto;
+}
+
+#myTable tbody tr td a {
+  font-size: 14px;
+  color: #000000;
 }
 
 #myTable tbody tr{

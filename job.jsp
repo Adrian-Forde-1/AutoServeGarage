@@ -1,22 +1,12 @@
 <%@page import="java.sql.*"%>
-<%@ page import="java.sql.*"%>
-<%
-  String userRole = (String)session.getAttribute("role");
-
-  if(userRole == "Customer" && Integer.parseInt((String)session.getAttribute("ID")) != Integer.parseInt(request.getParameter("ID"))) {
-    response.sendRedirect("./not_found.jsp");
-  }
-%>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer</title>
+    <title>Vehicle</title>
 
-    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="stylesheet" href="./styles/filter_styles.css" />
     <link rel="stylesheet" href="./styles/dashboard.css">
     <link rel="stylesheet" href="./styles/global.css">
     <link rel="stylesheet" href="./styles/profile.css">
@@ -175,41 +165,52 @@
             Connection connection = null;
             Class.forName("com.mysql.jdbc.Driver");
             connection = DriverManager.getConnection(dbURL, username, password);
-            int customerID = Integer.parseInt(request.getParameter("ID"));
+            int jobID = Integer.parseInt(request.getParameter("ID"));
             
-            String queryString = "SELECT * FROM User WHERE user_id = '" + customerID + "'";
+            String queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date, notes FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id WHERE service_id = '" + jobID + "'";
     
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(queryString);
             
-           if(resultSet.next()) {%>
+           if(resultSet.next()) {
+
+            String serviceQueryString = "SELECT os.service as service FROM Services_On_Job s JOIN Services_Offered os ON s.offered_service_id = os.offered_service_id WHERE service_id = '" + jobID + "'";
+            Statement servicesStatement = connection.createStatement();
+            ResultSet servicesResultSet = servicesStatement.executeQuery(serviceQueryString);
+
+            %>
                <div class="profile__left">
-                <span class="profile__name"><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %> - Customer</span>
-                <div class="profile__data-field">
-                  <span>ID: </span> <span><%= resultSet.getInt("user_id") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Email: </span> <span><%= resultSet.getString("email") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Address: </span> <span><%= resultSet.getString("address") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Contact: </span> <span><%= resultSet.getString("contact") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Date of birth: </span> <span><%= resultSet.getString("dob") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <span>Sex: </span> <span><%= resultSet.getString("sex") %></span>
-                </div>
-                <div class="profile__data-field">
-                  <a href='./edit_customer.jsp?ID=<%= resultSet.getInt("user_id")%>' class="profile__link">Edit Customer</a>
-                </div>
+                    <span class="profile__name"><%= resultSet.getString("vehicle_name") %> - Job</span>
+                    <div class="profile__data-field">
+                      <span>ID: </span> <span><%= resultSet.getInt("service_id") %></span>
+                    </div>
+                    <div class="profile__data-field">
+                      <span>Vehicle: </span> <span><%= resultSet.getString("vehicle_name") %></span>
+                    </div>
+                    <div class="profile__data-field">
+                      <span>Mechanic: </span> <span><%= resultSet.getString("mLName") %> <%= resultSet.getString("mFName") %></span>
+                    </div>
+                    <div class="profile__data-field">
+                      <span>Service Date: </span> <span><%= resultSet.getString("date") %></span>
+                    </div>
+                    <div class="profile__data-field">
+                      <span>Services on job:</span>
+                    </div>
+                    <%
+                        while(servicesResultSet.next()) { %>
+                            <div style="margin-left: 20px;"><span style="font-size: 14px;"><%= servicesResultSet.getString("service") %></span></div>
+                    <% } %>
+                    <div class="profile__data-field">
+                        <span>Notes: </span> <div style="width: 650px; font-size: 14px; margin-top: 15px;"><%= resultSet.getString("notes") %></div>
+                    </div>
                </div>
                <div class="profile__right">
-                 <a href="./add_vehicle.jsp?ID=<%= customerID %>" class="profile__link">Add Vehicle</a>
-                 <a href="./view_vehicles.jsp?ID=<%= customerID %>" class="profile__link" style="margin-top: 15px;">All Vehicles</a>
+                   <%
+                   String userRole = (String)session.getAttribute("role");
+       
+                   if(userRole.equals("Staff")) { %>
+                    <a href="./invoice.jsp?ID=<%= jobID %>" class="profile__link">Generate Invoice</a>
+                   <% } %>
                </div>
             <%  
             }

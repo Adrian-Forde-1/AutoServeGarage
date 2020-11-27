@@ -1,9 +1,15 @@
 <%@ page import="java.sql.*"%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Jobs</title>
+
+    <link rel="stylesheet" href="./styles/filter_styles.css" />
+    <link rel="stylesheet" href="./styles/dashboard.css" />
+    <link rel="stylesheet" href="./styles/global.css" />
+
     <!-- Montserrat Font -->
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap"
@@ -14,16 +20,13 @@
       href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/dashboard.css" />
-    <link rel="stylesheet" href="./styles/form.css">
-    <link rel="stylesheet" href="./styles/global.css" />
-    <title>Create Job</title>
   </head>
+
   <body>
     <div class="dashboard__wrapper">
       <nav class="dashboard__sidenav">
         <div>
-          <a href="index.jsp">
+          <a href="index.html">
             <svg
               width="1em"
               height="1em"
@@ -78,7 +81,24 @@
             </svg>
           </a>
         </div>
-
+        <!-- <div>
+          <a href="register_vehicle.html">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              aria-hidden="true"
+              focusable="false"
+              width="1em"
+              height="1em"
+              preserveAspectRatio="xMidYMid meet"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M20.772 10.155l-1.368-4.104A2.995 2.995 0 0 0 16.559 4H7.441a2.995 2.995 0 0 0-2.845 2.051l-1.368 4.104A2 2 0 0 0 2 12v5c0 .738.404 1.376 1 1.723V21a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2h12v2a1 1 0 0 0 1 1h1a1 1 0 0 0 1-1v-2.277A1.99 1.99 0 0 0 22 17v-5a2 2 0 0 0-1.228-1.845zM7.441 6h9.117c.431 0 .813.274.949.684L18.613 10H5.387l1.105-3.316A1 1 0 0 1 7.441 6zM5.5 16a1.5 1.5 0 1 1 .001-3.001A1.5 1.5 0 0 1 5.5 16zm13 0a1.5 1.5 0 1 1 .001-3.001A1.5 1.5 0 0 1 18.5 16z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div> -->
         <div>
           <a href="create_job.html">
             <svg
@@ -151,116 +171,86 @@
           </a>
         </div>
       </nav>
-      <!-- Sidenav End -->
       <div class="dashboard__content">
-        <div class="form__wrapper">
-          <div class="form__body">
-            <h3>Create Job</h3>
-            <form action="./jsp/create_jobJSP.jsp" method="POST">
-			
-			          <label for="Customer">
-                  <span>Customer</span>
-                  <select class="form__body" name="vehicle-id" id="vehicle-id" required>
-				           <option value="" hidden selected>Select Vehicle</option>
-                    <% 	
-                      String dbURL = "jdbc:mysql://localhost:3306/autoserve";
-                      String username = "root";
-                      String password = "rootUsr";
-
-			          	  try {
-                      Connection connection = null;
-                      Class.forName("com.mysql.jdbc.Driver");
-                      connection = DriverManager.getConnection(dbURL, username, password);
-
-			          	    ResultSet vehicleResultSet = null;
-                      Statement vehicleStatement=null;
-                      String vehicleSelectQuery = "SELECT v.vehicle_id as vID, v.vehicle_name  as vname, u.fname as fname, u.lname as lname FROM Vehicle v JOIN User u ON v.user_id = u.user_id";
-
-			          	    vehicleStatement = connection.createStatement();
-			          	    vehicleResultSet = vehicleStatement.executeQuery(vehicleSelectQuery);
-			          	    while (vehicleResultSet.next()) {	%>
-			          	      <option value='<%=vehicleResultSet.getInt("vID")%>''><%=vehicleResultSet.getString("fname")%> <%=vehicleResultSet.getString("lname")%> - <%=vehicleResultSet.getString("vname")%> </option>
-			                <% }
-			          	    } catch(Exception ex) {
-			          	        out.println(ex);
-			          	    }
-                    
-			          	  	%>
-			          	</select>
-			          </label>
-			
-			          <label for="Mechanic">
-			          	<span>Mechanic</span>
-                  <select class="form__body" name="mechanic-id" id="mechanic-id" required>
-			          	  <option value="" hidden selected>Select Mechanic</option>
-			              <% 	
-                  
-			              	try {
-                        Connection connection = null;
-                        Class.forName("com.mysql.jdbc.Driver");
-                        connection = DriverManager.getConnection(dbURL, username, password);
-                      
-                        Statement mechanicStatement = null;
-                        ResultSet mechanicResultSet = null;
-
-			              	  mechanicStatement = connection.createStatement();
-			              	  mechanicResultSet = mechanicStatement.executeQuery("SELECT * FROM Mechanic");
-			              	  while (mechanicResultSet.next()) {	%>
-			              	    <option value='<%= mechanicResultSet.getInt("mechanic_id")%>'> <%= mechanicResultSet.getString("fname") %> <%= mechanicResultSet.getString("lname") %> </option>
-                        <% }
-			          	    } catch(Exception ex) {
-			          	        out.println(ex);
-			          	    }
-                    
-			          		%>
-			          	</select>
-			          </label>
-			
-			
-			          <label for="Mechanic">
-			          	<span>Services Offered</span>
-			            <% 	
-                  
-			            	try {
-                      Connection connection = null;
-                      Class.forName("com.mysql.jdbc.Driver");
-                      connection = DriverManager.getConnection(dbURL, username, password);
-                    
-                      Statement servicesOfferedStatement = null;
-                      ResultSet servicesOfferedResultSet = null;
-                    
-			            	  servicesOfferedStatement = connection.createStatement();
-			            	  servicesOfferedResultSet = servicesOfferedStatement.executeQuery("SELECT * FROM Services_Offered");
-                      while (servicesOfferedResultSet.next()) {	%>
-                        <label for="" class="h-align-label-items small left">
-                          <span> <%= servicesOfferedResultSet.getString("service") %></span>
-                          <input type="checkbox" class="vehicle-service" name="vehicle-service" id="vehicle-service" value='<%= servicesOfferedResultSet.getInt("offered_service_id") %>'>
-                        </label>
-			                <% }
-
-                      
-			            	  } catch(Exception ex) {
-			            	      out.println(ex);
-			            	  }
-                    
-			            		%>
-			          </label>
-			
-			          <label for="Service">
-			          	<span>Service Date</span>
-                  <input type="date" id="service-date" name="service-date" required>			
-			          </label>
-              
-			          <label for="Note">
-			          	<span>Note</span>
-                  <textarea type="text" id="note" name="note"></textarea>			
-                </label>
-              
-			          <button>Submit</button>
-            </form>
+        <%
+          int statusID = Integer.parseInt(request.getParameter("sID"));
+        %>
+        <div class="overview-header-container">
+          <span>Jobs</span>
+          <div>
+            <a href="view_jobs.jsp?sID=3">All Jobs</a>
+            <a href="view_jobs.jsp?sID=2">Completed Jobs</a>
+            <a href="view_jobs.jsp?sID=1">Incomplete Jobs</a>
           </div>
         </div>
-      </div>
-    </div>
-  </body>
+
+        <input
+          type="text"
+          id="myInput"
+          onkeyup="myFunction()"
+          placeholder="Filter Service ID..."
+          title="Type in a name"
+        />
+
+    <table id="myTable">
+        <thead>
+            <tr class="header">
+              <th style="width: 10%">Service ID</th>
+              <th style="width: 10%">Vehicle ID</th>
+              <th style="width: 10%">Vehicle Name</th>
+              <th style="width: 10%">Mechanic</th>
+              <th style="width: 10%">Service Date</th>
+            </tr>
+        </thead>
+		<tbody>
+        <%
+
+        String dbURL = "jdbc:mysql://localhost:3306/autoserve";
+        String username = "root";
+        String password = "rootUsr";
+
+        try {
+
+        Connection connection = null;
+        Class.forName("com.mysql.jdbc.Driver");
+        connection = DriverManager.getConnection(dbURL, username, password);
+        
+
+        ResultSet resultSet=null;
+        Statement statement=null;
+
+        statement = connection.createStatement();
+
+        String queryString = "";
+
+        if(statusID == 1) {
+          queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id WHERE status = 1 ORDER BY date";
+        } else if (statusID == 2) {
+           queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id WHERE status = 2 ORDER BY date";
+        } else {
+          queryString = "SELECT sh.service_id as service_id, v.vehicle_id as vehicle_id, v.vehicle_name as vehicle_name, m.fname as mFName, m.lname as mLName, sh.service_date as date FROM Service_History sh JOIN Vehicle v ON sh.vehicle_id = v.vehicle_id JOIN Mechanic m ON sh.mechanic_id = m.mechanic_id ORDER BY date";
+        }
+        
+        resultSet=statement.executeQuery(queryString);
+
+        while(resultSet.next()) { %>
+              <tr> 
+        				<td> <a href='job.jsp?ID=<%=resultSet.getInt("service_id")%>'><%=resultSet.getInt("service_id")%></a>  </td>
+        				<td> <%=resultSet.getInt("vehicle_id")%>  </td>
+        				<td> <a href='job.jsp?ID=<%=resultSet.getInt("service_id")%>'><%=resultSet.getString("vehicle_name")%></a> </td>
+        				<td> <%=resultSet.getString("mFName")%> <%=resultSet.getString("mLName")%> </td>
+        				<td> <%=resultSet.getString("date")%>  </td>
+        			</tr>
+
+        <%
+          }
+        } catch(Exception ex) {
+          out.println(ex);
+        }
+        %>
+		</tbody>
+    <script src="./scripts/filter.js"></script>
+	
+	</table>
+	</body>
 </html>

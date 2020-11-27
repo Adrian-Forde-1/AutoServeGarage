@@ -164,7 +164,7 @@
         </nav>
         <div class="dashboard__content">
           <h2 class="overview-header">
-            Mechanics
+            Specializations
           </h2>
   
           <input
@@ -174,9 +174,6 @@
             placeholder="Filter specialization by names"
             title="Type in a name"
           />
-
-          
-  
           <table id="myTable">
             <thead>
               <tr class="header">

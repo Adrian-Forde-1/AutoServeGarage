@@ -266,7 +266,7 @@
             </a>
           </div> -->
           <div class="dashboard__card">
-            <a href="create_job.html">
+            <a href="create_job.jsp">
               <div class="dashboard__card-icon">
                 <svg
                   width="1em"
@@ -286,7 +286,7 @@
             </a>
           </div>
           <div class="dashboard__card">
-            <a href="">
+            <a href="view_jobs.jsp?sID=3">
               <div class="dashboard__card-icon">
                 <svg
                   width="1em"
