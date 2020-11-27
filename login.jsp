@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="./styles/login.css" />
     <link rel="stylesheet" href="./styles/global.css" />
     <link rel="stylesheet" href="./styles/navbar.css" />
-    <title>AutoServe | Login</title>
+    <title>Login</title>
   </head>
   <body>
     <%

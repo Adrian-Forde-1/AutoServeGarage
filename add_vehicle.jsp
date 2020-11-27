@@ -260,7 +260,7 @@
                       required
                     />
                   </label>
-                  <button>Submit</button>
+                  <button>Add</button>
             </form>
           </div>
         </div>

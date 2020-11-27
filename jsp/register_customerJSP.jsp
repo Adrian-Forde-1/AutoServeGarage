@@ -80,7 +80,7 @@
                 <div class="dashboard__wrapper">
                   <nav class="dashboard__sidenav">
                     <div>
-                      <a href="index.jsp">
+                      <a href="../index.jsp">
                         <svg
                           width="1em"
                           height="1em"
@@ -101,7 +101,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="staff_dashboard.jsp">
+                      <a href="../staff_dashboard.jsp">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           aria-hidden="true"
@@ -119,7 +119,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="register_customer.jsp">
+                      <a href="../register_customer.jsp">
                         <svg
                           width="1em"
                           height="1em"
@@ -136,7 +136,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="view_customers.jsp">
+                      <a href="../view_customers.jsp">
                         <svg 
                           xmlns="http://www.w3.org/2000/svg"
                           width="1em" 
@@ -148,7 +148,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="register_mechanic.jsp">
+                      <a href="../register_mechanic.jsp">
                         <svg
                           width="1em"
                           height="1em"
@@ -165,7 +165,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="view_mechanics.jsp">
+                      <a href="../view_mechanics.jsp">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           aria-hidden="true"
@@ -189,7 +189,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="create_job.jsp">
+                      <a href="../create_job.jsp">
                         <svg
                           width="1em"
                           height="1em"
@@ -206,7 +206,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="view_jobs.jsp?sID=3">
+                      <a href="../view_jobs.jsp?sID=3">
                         <svg
                           width="1em"
                           height="1em"
@@ -225,7 +225,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="view_services.jsp">
+                      <a href="../view_services.jsp">
                         <svg xmlns="http://www.w3.org/2000/svg" 
                             aria-hidden="true" 
                             focusable="false" 
@@ -238,7 +238,7 @@
                       </a>
                     </div>
                     <div>
-                      <a href="view_stock.jsp">
+                      <a href="../view_stock.jsp">
                         <svg xmlns="http://www.w3.org/2000/svg" 
                           aria-hidden="true" 
                           focusable="false" 

@@ -301,7 +301,7 @@
                                  }
     
                               %>
-                              <button>Submit</button>
+                              <button>Edit</button>
                         </form>
                     </div>
                 </div>

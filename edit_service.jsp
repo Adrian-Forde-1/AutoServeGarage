@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="./styles/dashboard.css" />
     <link rel="stylesheet" href="./styles/form.css" />
     <link rel="stylesheet" href="./styles/global.css" />
-    <title>Add Stock</title>
+    <title>Add Service</title>
   </head>
   <body>
     <div class="dashboard__wrapper">
@@ -250,7 +250,7 @@
                                 />
                               </label>
                               
-                              <button>Add</button>
+                              <button>Edit</button>
                         </form>
                       </div>
                     </div>

@@ -233,7 +233,7 @@
                                 <span>Specialization *</span>
                                 <input type="text" id="specialization" name="specialization" value='<%= resultSet.getString("specialization") %>'' required />
                             </label>
-                            <button>Submit</button>
+                            <button>Edit</button>
                         </form>
                     </div>
                 </div>

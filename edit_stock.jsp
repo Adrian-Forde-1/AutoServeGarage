@@ -295,7 +295,7 @@
                                     
                                     %>
                                               
-                                              <button>Add</button>
+                                              <button>Edit</button>
                                         </form>
                                       </div>
                                     </div>

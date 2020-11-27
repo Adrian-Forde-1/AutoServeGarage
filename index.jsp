@@ -17,7 +17,7 @@
       rel="stylesheet"
     />
 
-    <title>AutoServe | Landing Page</title>
+    <title>Landing Page</title>
   </head>
   <body>
     <div class="landing-page__wrapper">

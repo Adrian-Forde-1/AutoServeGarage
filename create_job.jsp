@@ -308,7 +308,7 @@
                   <textarea type="text" id="note" name="note"></textarea>			
                 </label>
               
-			          <button>Submit</button>
+			          <button>Create</button>
             </form>
           </div>
         </div>
