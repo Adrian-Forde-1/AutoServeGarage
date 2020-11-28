@@ -59,7 +59,9 @@
             <a href="store.jsp">Store</a>
           </li>
           <li class="navlist-item">
-            <button>Logout</button>
+            <form action="./jsp/logout.jsp" method="POST">
+              <button>Logout</button>
+            </form>
           </li>
         <% } else { %>
           <li class="navlist-item">
@@ -77,7 +79,7 @@
         <% } %>
       </ul>
     </nav>
-    <div class="container top-spacing" style="height: 100vh;">
+    <div class="container top-spacing store__wrapper" style="height: 100vh;">
       <h1 class="store-header">Store</h1>
       <div class="gallery">
         <% 

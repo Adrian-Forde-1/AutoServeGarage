@@ -213,7 +213,6 @@
           <input
             type="text"
             id="myInput"
-            onkeyup="myFunction()"
             placeholder="Filter mechanics by names"
             title="Type in a name"
           />
@@ -265,7 +264,7 @@
                       <tr>
                         <td><%= resultSet.getInt("mechanic_id") %></td>
                         <td>
-                            <a href='./mechanic.jsp?ID=<%= resultSet.getInt("mechanic_id")%>'><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %></a>
+                            <a href='./mechanic.jsp?ID=<%= resultSet.getInt("mechanic_id")%>' class="filter-by"><%= resultSet.getString("fname") %> <%= resultSet.getString("lname") %></a>
                         </td>
                         <td><%= resultSet.getString("address") %></td>
                         <td><%= resultSet.getString("contact") %></td>
@@ -287,5 +286,6 @@
           </table>
         </div>
       </div>
+      <script src="./scripts/table_filter.js"></script>
 </body>
 </html>

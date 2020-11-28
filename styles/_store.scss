@@ -7,7 +7,10 @@ h1 {
 //   margin: auto;
 //   overflow: auto;
 // }
-
+.store__wrapper {
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url('../assets/tools-img.jpg');
+}
 .store-header {
   margin-top: 30px;
   font-size: 32px;
@@ -25,6 +28,9 @@ h1 {
   flex-wrap: wrap;
   align-content: flex-start;
   gap: 20px;
+  color: #fff;
+  background-size: auto;
+  background-attachment: fixed;
 
   &__img {
     width: 300px;

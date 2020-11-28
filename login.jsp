@@ -80,7 +80,7 @@
               placeholder="Enter your password"
             />
           </label>
-          <button id="login-btn">Submit</button>
+          <button id="login-btn">Login</button>
         </form>
       </div>
     </div>

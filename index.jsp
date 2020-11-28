@@ -88,10 +88,10 @@
           <div class="header__text">
             <h1>AutoServe Inc</h1>
             <p>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Eligendi, labore. Sit beatae delectus sint, hic excepturi
-              consectetur quidem, odit magni est minus architecto fuga corrupti!
-              Ad ut eaque illo corporis?
+              We strive to be the best mechanic shop that we can be. To
+              provide a reliable service that will satify the needs and 
+              wants of all our customers and a service that cannot be matched 
+              by any other - AutuServe Inc.
             </p>
           </div>
           <div class="header__cta-container">

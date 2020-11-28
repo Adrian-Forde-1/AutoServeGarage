@@ -58,7 +58,9 @@
             <a href="store.jsp">Store</a>
           </li>
           <li class="navlist-item">
-            <button>Logout</button>
+            <form action="./jsp/logout.jsp" method="POST">
+              <button>Logout</button>
+            </form>
           </li>
         <% } else { %>
           <li class="navlist-item">
@@ -85,7 +87,7 @@
           <div class="img-text__img-container">
             <img src="assets/mechanic.jpg" />
           </div>
-          <div class="img-text__text-container">
+          <div class="img-text__text-container" style="color: #fff;">
             <p>
               We are <b>AutoServe Inc.</b> We've been in existence for roughly
               10 years. It was all started by Winston Fields at his home in
@@ -101,7 +103,7 @@
         </div>
 
         <h3 class="about-us__sub-header bot-spacing-sm">Sales and Services</h3>
-        <p class="about-us__services__desc bot-spacing-sm">
+        <p class="about-us__services__desc bot-spacing-sm" style="color: #fff;">
           We offer a wide range of services
         </p>
         <div class="about-us__services">
@@ -178,7 +180,7 @@
           </div>
         </div>
 
-        <p class="about-us__ending-text">
+        <p class="about-us__ending-text" style="color: #fff;">
           We also sell basic auto accessories which are avaiable for purchase at
           our garage.
         </p>

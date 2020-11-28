@@ -244,7 +244,7 @@
                           <div class="notification__info">
                               <span>Successfully Added Mechanic</span>
                           </div>
-                          <a href="../register_mechanic.html" class="notification__button">
+                          <a href="../register_mechanic.jsp" class="notification__button">
                               Go Back
                           </a>
                       </div>

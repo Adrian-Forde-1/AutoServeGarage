@@ -301,6 +301,9 @@
                                         <tr>
                                             <td style="text-align: left;"><%= userResultSet.getString("user_contact") %></td>
                                         </tr>
+                                        <tr>
+                                            <td style="text-align: left;"><%= resultSet.getString("vehicle_name") %> </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>

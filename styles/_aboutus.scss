@@ -9,6 +9,10 @@ $color-gold: #ffc627;
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+      url('../assets/tools-img.jpg');
+      background-size: auto;
+      background-attachment: fixed;
   }
   &__header {
     margin-top: 30px;
@@ -32,7 +36,6 @@ $color-gold: #ffc627;
     align-content: flex-start;
     align-items: center;
     gap: 30px;
-    background: #fff;
 
     &__desc {
       font-size: 16px;
@@ -46,11 +49,12 @@ $color-gold: #ffc627;
       justify-content: flex-start;
       padding-top: 50px;
       align-items: center;
-      border: 2px solid $color-blue;
+      border: 2px solid #fff;
       transition: all 200ms ease-in-out;
       cursor: pointer;
       position: relative;
       overflow: hidden;
+      background: transparent;
 
       //   &::after {
       //     content: "";
@@ -67,7 +71,7 @@ $color-gold: #ffc627;
       //   }
 
       span {
-        color: $color-blue;
+        color: #fff;
         transition: all 200ms ease-in-out;
         font-size: 20px;
         z-index: 2;
@@ -75,13 +79,14 @@ $color-gold: #ffc627;
 
       svg {
         font-size: 60px;
-        color: $color-blue;
+        color: #fff;
         margin: auto 0;
         z-index: 2;
       }
 
       &:hover {
         background: $color-blue;
+        border-color: $color-blue;
 
         // &::after {
         //   transform: scaleY(1);

@@ -727,6 +727,11 @@ h1 {
   text-align: center;
 }
 
+.store__wrapper {
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url("../assets/tools-img.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../assets/tools-img.jpg");
+}
+
 .store-header {
   margin-top: 30px;
   font-size: 32px;
@@ -752,6 +757,9 @@ h1 {
   -ms-flex-line-pack: start;
       align-content: flex-start;
   gap: 20px;
+  color: #fff;
+  background-size: auto;
+  background-attachment: fixed;
 }
 
 .gallery__img {
@@ -789,6 +797,10 @@ h1 {
   -webkit-box-align: start;
       -ms-flex-align: start;
           align-items: flex-start;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0.7)), to(rgba(0, 0, 0, 0.7))), url("../assets/tools-img.jpg");
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("../assets/tools-img.jpg");
+  background-size: auto;
+  background-attachment: fixed;
 }
 
 .about-us__header {
@@ -820,7 +832,6 @@ h1 {
       -ms-flex-align: center;
           align-items: center;
   gap: 30px;
-  background: #fff;
 }
 
 .about-us__services__desc {
@@ -844,16 +855,17 @@ h1 {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  border: 2px solid #2e294e;
+  border: 2px solid #fff;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  background: transparent;
 }
 
 .about-us__services__card span {
-  color: #2e294e;
+  color: #fff;
   -webkit-transition: all 200ms ease-in-out;
   transition: all 200ms ease-in-out;
   font-size: 20px;
@@ -862,13 +874,14 @@ h1 {
 
 .about-us__services__card svg {
   font-size: 60px;
-  color: #2e294e;
+  color: #fff;
   margin: auto 0;
   z-index: 2;
 }
 
 .about-us__services__card:hover {
   background: #2e294e;
+  border-color: #2e294e;
 }
 
 .about-us__services__card:hover span,
