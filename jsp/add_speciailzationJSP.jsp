@@ -214,7 +214,7 @@
                         <div class="notification__info">
                             <span>Successfully Added Specialization</span>
                         </div>
-                        <a href="../view_services.jsp" class="notification__button">
+                        <a href="../view_specializations.jsp" class="notification__button">
                             Go Back
                         </a>
                     </div>
